@@ -1,0 +1,15 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "amount": 25.5,
+      "category": "??",
+      "description": "??",
+      "type": "expense",
+      "date": "2026-05-10",
+      "createdAt": "2026-05-10T15:05:25.201Z"
+    }
+  ],
+  "budgets": [],
+  "nextId": 2
+}

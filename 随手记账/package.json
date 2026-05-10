@@ -1,0 +1,13 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "随手记账本系统",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && npm install ; cd ../frontend && npm install"
+  },
+  "keywords": ["expense", "tracker", "budget"],
+  "author": "",
+  "license": "MIT"
+}
