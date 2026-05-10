@@ -1,0 +1,45 @@
+.container {
+  padding-top: 60rpx;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 120rpx 0;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.umbrella-info {
+  text-align: center;
+}
+
+.umbrella-code {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1890ff;
+  margin-bottom: 32rpx;
+}
+
+.umbrella-status, .umbrella-station, .umbrella-battery {
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.status-label {
+  color: #666;
+}
+
+.action-section {
+  margin-top: 60rpx;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 28rpx;
+  font-size: 32rpx;
+}
+
+.tips {
+  text-align: center;
+  margin-top: 24rpx;
+}

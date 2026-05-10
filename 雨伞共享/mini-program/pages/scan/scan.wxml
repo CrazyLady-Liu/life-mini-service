@@ -1,0 +1,38 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <view wx:elif="{{umbrella}}" class="umbrella-info card">
+    <view class="umbrella-code">{{umbrella.code}}</view>
+    <view class="umbrella-status">
+      <text class="status-label">状态:</text>
+      <text class="{{umbrella.status === 'available' ? 'text-success' : 'text-warning'}}">
+        {{umbrella.status === 'available' ? '可借用' : umbrella.status === 'in_use' ? '使用中' : '维护中'}}
+      </text>
+    </view>
+    <view wx:if="{{umbrella.station}}" class="umbrella-station">
+      <text class="text-secondary">当前位置:</text>
+      <text>{{umbrella.station.name}}</text>
+    </view>
+    <view class="umbrella-battery">
+      <text class="text-secondary">电量:</text>
+      <text>{{umbrella.battery}}%</text>
+    </view>
+  </view>
+
+  <view wx:else class="empty">
+    <text>请扫描雨伞二维码</text>
+  </view>
+
+  <view wx:if="{{umbrella && !loading}}" class="action-section">
+    <button 
+      class="action-btn btn-primary" 
+      bindtap="handleAction"
+      disabled="{{actionType === 'borrow' && umbrella.status !== 'available'}}"
+    >
+      {{actionType === 'borrow' ? '立即借伞' : '立即还伞'}}
+    </button>
+    <view wx:if="{{actionType === 'borrow'}}" class="tips text-small text-secondary">
+      押金: ¥99 (芝麻信用650分以上免押金)
+    </view>
+  </view>
+</view>

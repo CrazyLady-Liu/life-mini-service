@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="form-section card">
+    <view class="form-item">
+      <view class="label">报修类型</view>
+      <radio-group class="radio-group" bindchange="onTypeChange">
+        <radio value="umbrella" checked="{{type === 'umbrella'}}">雨伞故障</radio>
+        <radio value="station" checked="{{type === 'station'}}">站点故障</radio>
+      </radio-group>
+    </view>
+
+    <view class="form-item">
+      <view class="label">故障描述</view>
+      <textarea 
+        class="textarea" 
+        placeholder="请详细描述故障情况..."
+        value="{{description}}"
+        bindinput="onDescInput"
+        maxlength="200"
+      ></textarea>
+      <view class="char-count text-small text-secondary">{{description.length}}/200</view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">上传图片 (可选)</view>
+      <view class="image-list">
+        <view wx:for="{{images}}" wx:key="*this" class="image-item">
+          <image src="{{item}}" mode="aspectFill" class="image"></image>
+          <view class="delete-btn" bindtap="removeImage" data-index="{{index}}">×</view>
+        </view>
+        <view wx:if="{{images.length < 3}}" class="image-add" bindtap="chooseImage">
+          <text class="add-icon">+</text>
+          <text class="add-text text-small text-secondary">添加图片</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <button 
+    class="submit-btn btn-primary" 
+    bindtap="submit"
+    disabled="{{submitting}}"
+  >
+    {{submitting ? '提交中...' : '提交报修'}}
+  </button>
+</view>

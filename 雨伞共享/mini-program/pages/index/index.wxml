@@ -1,0 +1,62 @@
+<view class="container">
+  <view class="header-card card">
+    <view class="user-info flex">
+      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <view class="nickname">{{userInfo.nickname || '微信用户'}}</view>
+        <view class="credit">信用分: {{userInfo.creditScore}}</view>
+      </view>
+      <view class="deposit flex flex-center">
+        <view class="deposit-amount">¥{{userInfo.deposit}}</view>
+        <view class="deposit-label text-small text-secondary">押金</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="scan-section" bindtap="toScan">
+    <view class="scan-btn btn-primary">
+      <text class="scan-icon">📱</text>
+      <text>扫码借伞</text>
+    </view>
+  </view>
+
+  <view wx:if="{{currentOrder}}" class="current-order card">
+    <view class="order-title flex flex-between">
+      <text>进行中订单</text>
+      <text class="text-warning">使用中</text>
+    </view>
+    <view class="order-info">
+      <view class="order-item">
+        <text class="text-secondary">雨伞编号:</text>
+        <text>{{currentOrder.umbrella.code}}</text>
+      </view>
+      <view class="order-item">
+        <text class="text-secondary">借伞地点:</text>
+        <text>{{currentOrder.borrowStation.name}}</text>
+      </view>
+      <view class="order-item">
+        <text class="text-secondary">借伞时间:</text>
+        <text>{{currentOrder.borrowTime}}</text>
+      </view>
+    </view>
+    <view class="return-btn btn-primary" bindtap="toScan">扫码还伞</view>
+  </view>
+
+  <view class="nearby-section">
+    <view class="section-title">附近伞点</view>
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <view wx:else wx:for="{{nearbyStations}}" wx:key="_id" class="station-item card" bindtap="toStationDetail" data-id="{{item._id}}">
+      <view class="station-info flex flex-between">
+        <view>
+          <view class="station-name">{{item.name}}</view>
+          <view class="station-address text-small text-secondary">{{item.address}}</view>
+        </view>
+        <view class="station-status">
+          <text class="available">{{item.availableCount}}</text>
+          <text class="text-small text-secondary">/ {{item.capacity}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!loading && nearbyStations.length === 0}}" class="empty">附近暂无伞点</view>
+  </view>
+</view>

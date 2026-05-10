@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="tabs">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="*this"
+      class="tab-item {{currentTab === index ? 'active' : ''}}"
+      bindtap="onTabChange"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <view wx:elif="{{orders.length === 0}}" class="empty">暂无订单</view>
+
+  <view wx:else class="order-list">
+    <view wx:for="{{orders}}" wx:key="_id" class="order-item card">
+      <view class="order-header flex flex-between">
+        <view class="order-no">订单: {{item._id}}</view>
+        <view class="order-status {{getStatusClass(item.status)}}">{{getStatusText(item.status)}}</view>
+      </view>
+      
+      <view class="order-info">
+        <view class="info-row">
+          <text class="label">雨伞:</text>
+          <text>{{item.umbrella.code}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">借伞:</text>
+          <text>{{item.borrowStation.name}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">借伞时间:</text>
+          <text>{{item.borrowTime}}</text>
+        </view>
+        <view wx:if="{{item.returnStation}}" class="info-row">
+          <text class="label">还伞:</text>
+          <text>{{item.returnStation.name}}</text>
+        </view>
+        <view wx:if="{{item.returnTime}}" class="info-row">
+          <text class="label">还伞时间:</text>
+          <text>{{item.returnTime}}</text>
+        </view>
+      </view>
+
+      <view class="order-footer flex flex-between">
+        <view wx:if="{{item.cost}}" class="cost">费用: ¥{{item.cost}}</view>
+        <view wx:else class="cost text-small text-secondary">按时计费中...</view>
+        <button wx:if="{{item.status === 'completed'}}" class="report-btn text-small" bindtap="toReport" data-order="{{item}}">报修</button>
+      </view>
+    </view>
+  </view>
+</view>

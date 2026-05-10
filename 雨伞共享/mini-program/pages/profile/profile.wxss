@@ -1,0 +1,76 @@
+.user-header {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.deposit-card {
+  margin-top: 24rpx;
+}
+
+.deposit-header {
+  margin-bottom: 24rpx;
+  font-size: 30rpx;
+}
+
+.deposit-amount {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.deposit-actions {
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.action-btn {
+  padding: 20rpx;
+  font-size: 28rpx;
+  border: 1rpx solid #1890ff;
+  background: #fff;
+  color: #1890ff;
+  border-radius: 8rpx;
+}
+
+.free-tip {
+  text-align: center;
+}
+
+.menu-list {
+  margin-top: 24rpx;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 24rpx;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.arrow {
+  color: #ccc;
+}

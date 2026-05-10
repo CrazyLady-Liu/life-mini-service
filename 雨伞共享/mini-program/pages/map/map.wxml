@@ -1,0 +1,27 @@
+<view class="map-container">
+  <map
+    id="map"
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+    show-location
+    bindmarkertap="onMarkerTap"
+  ></map>
+
+  <view wx:if="{{selectedStation}}" class="station-detail card">
+    <view class="station-name">{{selectedStation.name}}</view>
+    <view class="station-address text-small text-secondary">{{selectedStation.address}}</view>
+    <view class="station-stats flex flex-between">
+      <view>
+        <text class="text-primary">可用: {{selectedStation.availableCount}}</text>
+        <text class="text-secondary"> / {{selectedStation.capacity}}</text>
+      </view>
+      <text class="text-small text-secondary">状态: {{selectedStation.status === 'active' ? '正常' : '维护中'}}</text>
+    </view>
+    <view class="actions flex">
+      <button class="action-btn flex-1" bindtap="navigateToStation">导航</button>
+      <button class="action-btn action-btn-primary flex-1" bindtap="toScan">扫码借伞</button>
+    </view>
+  </view>
+</view>
