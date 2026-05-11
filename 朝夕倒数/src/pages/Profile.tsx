@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { storage } from '../storage';
+import { useAuth } from '../contexts/AuthContext';
 import { typeLabels, formatDate } from '../utils';
 import '../App.css';
 
@@ -8,20 +9,19 @@ type Tab = 'all' | 'history' | 'manage';
 
 export default function Profile() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState<Tab>('all');
-  const [user, setUser] = useState<any>(null);
   const [allCountdowns, setAllCountdowns] = useState<any[]>([]);
   const [deletedCountdowns, setDeletedCountdowns] = useState<any[]>([]);
 
   useEffect(() => {
-    setUser(storage.getUser());
     setAllCountdowns(storage.getActiveCountdowns());
     setDeletedCountdowns(storage.getDeletedCountdowns());
   }, []);
 
   const handleLogout = () => {
-    if (confirm('确定要退出登录吗？')) {
-      storage.removeUser();
+    if (confirm('确定要退出登录吗？退出后将清除登录状态。')) {
+      logout();
       navigate('/login');
     }
   };
@@ -29,6 +29,7 @@ export default function Profile() {
   const handleClearAll = () => {
     if (confirm('确定要清除所有数据吗？此操作不可恢复！')) {
       storage.clearAllData();
+      logout();
       navigate('/login');
     }
   };
@@ -124,22 +125,38 @@ export default function Profile() {
       )}
 
       {activeTab === 'manage' && (
-        <div className="card">
-          <h4 style={{ color: '#333', marginBottom: 16 }}>数据管理</h4>
-          <div style={{ marginBottom: 12, paddingBottom: 12, borderBottom: '1px solid #e0e0e0' }}>
-            <p style={{ color: '#666', fontSize: 14, marginBottom: 8 }}>
-              倒计时数量：{allCountdowns.length}
-            </p>
-            <p style={{ color: '#666', fontSize: 14 }}>
-              历史记录：{deletedCountdowns.length}
-            </p>
+        <div>
+          <div className="card" style={{ marginBottom: 12 }}>
+            <h4 style={{ color: '#333', marginBottom: 16 }}>📊 数据统计</h4>
+            <div style={{ display: 'flex', gap: 16 }}>
+              <div style={{ flex: 1, textAlign: 'center', padding: '16px', background: '#f0f7ff', borderRadius: 8 }}>
+                <div style={{ fontSize: 28, fontWeight: 'bold', color: '#667eea' }}>{allCountdowns.length}</div>
+                <div style={{ fontSize: 12, color: '#666', marginTop: 4 }}>活跃倒计时</div>
+              </div>
+              <div style={{ flex: 1, textAlign: 'center', padding: '16px', background: '#fff4f4', borderRadius: 8 }}>
+                <div style={{ fontSize: 28, fontWeight: 'bold', color: '#ff4757' }}>{deletedCountdowns.length}</div>
+                <div style={{ fontSize: 12, color: '#666', marginTop: 4 }}>历史记录</div>
+              </div>
+            </div>
           </div>
-          <button className="btn btn-secondary" onClick={handleLogout} style={{ width: '100%', marginBottom: 12 }}>
-            退出登录
-          </button>
-          <button className="btn btn-danger" onClick={handleClearAll} style={{ width: '100%' }}>
-            清除所有数据
-          </button>
+
+          <div className="card">
+            <h4 style={{ color: '#333', marginBottom: 16 }}>⚙️ 账户操作</h4>
+            <button
+              className="btn btn-secondary"
+              onClick={handleLogout}
+              style={{ width: '100%', marginBottom: 12 }}
+            >
+              🚪 退出登录
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={handleClearAll}
+              style={{ width: '100%' }}
+            >
+              🗑️ 清除所有数据
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { storage } from '../storage';
+import { useAuth } from '../contexts/AuthContext';
 import { calculateRemainingTime, typeLabels, typeColors } from '../utils';
 import { Countdown } from '../types';
 import '../App.css';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [countdowns, setCountdowns] = useState<Countdown[]>([]);
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const loadCountdowns = () => {
     const active = storage.getActiveCountdowns();
@@ -23,17 +27,106 @@ export default function Home() {
     loadCountdowns();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const togglePin = (e: React.MouseEvent, id: string, isPinned: boolean) => {
     e.stopPropagation();
     storage.updateCountdown(id, { isPinned: !isPinned });
     loadCountdowns();
   };
 
+  const handleLogout = () => {
+    setShowMenu(false);
+    if (confirm('确定要退出登录吗？')) {
+      logout();
+      navigate('/login');
+    }
+  };
+
   return (
     <div className="page">
       <div className="header">
         <h1>朝夕倒数</h1>
-        <button className="icon-btn" onClick={() => navigate('/profile')}>👤</button>
+        <div style={{ position: 'relative' }} ref={menuRef}>
+          <button
+            className="icon-btn"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            👤
+          </button>
+          {showMenu && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '100%',
+                right: 0,
+                background: 'white',
+                borderRadius: 8,
+                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                minWidth: 180,
+                marginTop: 8,
+                zIndex: 100,
+              }}
+            >
+              <div
+                style={{
+                  padding: '12px 16px',
+                  borderBottom: '1px solid #f0f0f0',
+                }}
+              >
+                <div style={{ fontSize: 14, fontWeight: 500, color: '#333' }}>
+                  {user?.phone}
+                </div>
+                <div style={{ fontSize: 12, color: '#999', marginTop: 2 }}>
+                  已登录
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setShowMenu(false);
+                  navigate('/profile');
+                }}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  fontSize: 14,
+                  color: '#333',
+                }}
+              >
+                📋 个人中心
+              </button>
+              <button
+                onClick={handleLogout}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  fontSize: 14,
+                  color: '#ff4757',
+                }}
+              >
+                🚪 退出登录
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {countdowns.length === 0 ? (
