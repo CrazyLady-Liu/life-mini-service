@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据统计看板 - 宅家积分社管理后台</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🏠 宅家积分社</h1>
+                <p>管理后台</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-page="dashboard">
+                    <span class="icon">📊</span>
+                    <span>数据统计看板</span>
+                </div>
+                <div class="nav-item" data-page="members">
+                    <span class="icon">👥</span>
+                    <span>家庭成员管理</span>
+                </div>
+                <div class="nav-item" data-page="rules">
+                    <span class="icon">⚙️</span>
+                    <span>家务规则配置</span>
+                </div>
+                <div class="nav-item" data-page="tasks">
+                    <span class="icon">📋</span>
+                    <span>任务排班管理</span>
+                </div>
+                <div class="nav-item" data-page="checkin">
+                    <span class="icon">✅</span>
+                    <span>打卡积分审核</span>
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <span class="icon">🔧</span>
+                    <span>系统设置</span>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">U</div>
+                    <div class="user-detail">
+                        <div class="name">用户</div>
+                        <div class="role">管理员</div>
+                    </div>
+                </div>
+                <button class="logout-btn">退出登录</button>
+            </div>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">数据统计看板</h2>
+                <div class="page-actions">
+                    <button class="btn btn-default" onclick="refreshData()">
+                        🔄 刷新数据
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 统计卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="icon blue">👥</div>
+                    <div class="value" id="totalUsers">-</div>
+                    <div class="label">注册用户</div>
+                    <div class="trend up">↑ 12% 较上周</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon green">🏠</div>
+                    <div class="value" id="totalFamilies">-</div>
+                    <div class="label">家庭总数</div>
+                    <div class="trend up">↑ 8% 较上周</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon orange">📋</div>
+                    <div class="value" id="totalTasks">-</div>
+                    <div class="label">家务任务</div>
+                    <div class="trend up">↑ 25% 较上周</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon purple">⭐</div>
+                    <div class="value" id="totalPoints">-</div>
+                    <div class="label">累计积分</div>
+                    <div class="trend up">↑ 18% 较上周</div>
+                </div>
+            </div>
+            
+            <!-- 快捷操作 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">快捷操作</h3>
+                </div>
+                <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 0;">
+                    <div class="stat-card" style="cursor: pointer;" onclick="window.location.href='checkin.html'">
+                        <div class="icon blue">✅</div>
+                        <div class="value" id="pendingCheckin">-</div>
+                        <div class="label">待审核打卡</div>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="window.location.href='tasks.html'">
+                        <div class="icon green">📋</div>
+                        <div class="value">+</div>
+                        <div class="label">新建任务</div>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="window.location.href='members.html'">
+                        <div class="icon orange">👥</div>
+                        <div class="value">+</div>
+                        <div class="label">添加成员</div>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="window.location.href='rules.html'">
+                        <div class="icon purple">⚙️</div>
+                        <div class="value">⚙️</div>
+                        <div class="label">配置规则</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 近期活动 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">近期活动</h3>
+                </div>
+                <div class="table-container">
+                    <table id="recentActivityTable">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>用户</th>
+                                <th>类型</th>
+                                <th>详情</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="empty-state">
+                                        <div class="icon">📭</div>
+                                        <p>暂无数据</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 积分排行榜 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">积分排行榜</h3>
+                </div>
+                <div class="table-container">
+                    <table id="rankingTable">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>用户</th>
+                                <th>积分</th>
+                                <th>打卡次数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="empty-state">
+                                        <div class="icon">🏆</div>
+                                        <p>暂无数据</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="common.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initAdminPage();
+            loadDashboardData();
+        });
+        
+        // 加载看板数据
+        async function loadDashboardData() {
+            try {
+                // 模拟数据 - 实际项目中从API获取
+                const mockData = {
+                    totalUsers: 128,
+                    totalFamilies: 32,
+                    totalTasks: 256,
+                    totalPoints: 15680,
+                    pendingCheckin: 12,
+                    recentActivity: [
+                        { time: new Date().toISOString(), user: '张三', type: '打卡', detail: '完成了扫地任务' },
+                        { time: new Date().toISOString(), user: '李四', type: '注册', detail: '新用户注册' },
+                        { time: new Date().toISOString(), user: '王五', type: '积分', detail: '获得了10积分' },
+                    ],
+                    ranking: [
+                        { name: '张三', points: 1280, checkins: 45 },
+                        { name: '李四', points: 1056, checkins: 38 },
+                        { name: '王五', points: 890, checkins: 32 },
+                    ]
+                };
+                
+                // 更新统计数据
+                document.getElementById('totalUsers').textContent = mockData.totalUsers;
+                document.getElementById('totalFamilies').textContent = mockData.totalFamilies;
+                document.getElementById('totalTasks').textContent = mockData.totalTasks;
+                document.getElementById('totalPoints').textContent = mockData.totalPoints;
+                document.getElementById('pendingCheckin').textContent = mockData.pendingCheckin;
+                
+                // 渲染近期活动
+                const activityTableBody = document.querySelector('#recentActivityTable tbody');
+                activityTableBody.innerHTML = mockData.recentActivity.map(item => `
+                    <tr>
+                        <td>${formatDate(item.time)}</td>
+                        <td>${item.user}</td>
+                        <td><span class="tag tag-info">${item.type}</span></td>
+                        <td>${item.detail}</td>
+                    </tr>
+                `).join('');
+                
+                // 渲染排行榜
+                const rankingTableBody = document.querySelector('#rankingTable tbody');
+                rankingTableBody.innerHTML = mockData.ranking.map((item, index) => {
+                    const rankIcon = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
+                    return `
+                        <tr>
+                            <td>${rankIcon}</td>
+                            <td>${item.name}</td>
+                            <td><span class="tag tag-success">${item.points} 分</span></td>
+                            <td>${item.checkins} 次</td>
+                        </tr>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                showToast('加载数据失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 刷新数据
+        function refreshData() {
+            showToast('数据已刷新', 'success');
+            loadDashboardData();
+        }
+    </script>
+</body>
+</html>

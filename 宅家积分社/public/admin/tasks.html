@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务排班管理 - 宅家积分社管理后台</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🏠 宅家积分社</h1>
+                <p>管理后台</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item" data-page="dashboard">
+                    <span class="icon">📊</span><span>数据统计看板</span>
+                </div>
+                <div class="nav-item" data-page="members">
+                    <span class="icon">👥</span><span>家庭成员管理</span>
+                </div>
+                <div class="nav-item" data-page="rules">
+                    <span class="icon">⚙️</span><span>家务规则配置</span>
+                </div>
+                <div class="nav-item active" data-page="tasks">
+                    <span class="icon">📋</span><span>任务排班管理</span>
+                </div>
+                <div class="nav-item" data-page="checkin">
+                    <span class="icon">✅</span><span>打卡积分审核</span>
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <span class="icon">🔧</span><span>系统设置</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">U</div>
+                    <div class="user-detail">
+                        <div class="name">用户</div>
+                        <div class="role">管理员</div>
+                    </div>
+                </div>
+                <button class="logout-btn">退出登录</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">任务排班管理</h2>
+                <div class="page-actions">
+                    <button class="btn btn-primary">➕ 新建任务</button>
+                    <button class="btn btn-success">🔄 自动排班</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">任务列表</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>任务名称</th><th>类型</th><th>周期</th><th>负责人</th><th>积分</th><th>状态</th><th>操作</th></tr>
+                        </thead>
+                        <tbody><tr><td colspan="7"><div class="empty-state"><div class="icon">📭</div><p>暂无任务</p></div></td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="common.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => initAdminPage());</script>
+</body>
+</html>

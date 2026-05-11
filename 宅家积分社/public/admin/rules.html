@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家务规则配置 - 宅家积分社管理后台</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🏠 宅家积分社</h1>
+                <p>管理后台</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item" data-page="dashboard">
+                    <span class="icon">📊</span><span>数据统计看板</span>
+                </div>
+                <div class="nav-item" data-page="members">
+                    <span class="icon">👥</span><span>家庭成员管理</span>
+                </div>
+                <div class="nav-item active" data-page="rules">
+                    <span class="icon">⚙️</span><span>家务规则配置</span>
+                </div>
+                <div class="nav-item" data-page="tasks">
+                    <span class="icon">📋</span><span>任务排班管理</span>
+                </div>
+                <div class="nav-item" data-page="checkin">
+                    <span class="icon">✅</span><span>打卡积分审核</span>
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <span class="icon">🔧</span><span>系统设置</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">U</div>
+                    <div class="user-detail">
+                        <div class="name">用户</div>
+                        <div class="role">管理员</div>
+                    </div>
+                </div>
+                <button class="logout-btn">退出登录</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">家务规则配置</h2>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">家务类型管理</h3>
+                    <button class="btn btn-primary" onclick="addTaskType()">➕ 添加类型</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>类型名称</th><th>图标</th><th>默认积分</th><th>操作</th></tr>
+                        </thead>
+                        <tbody><tr><td colspan="4"><div class="empty-state"><div class="icon">📭</div><p>暂无数据</p></div></td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">积分规则配置</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>打卡基础积分</label>
+                        <input type="number" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label>连续打卡奖励</label>
+                        <input type="number" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label>难度系数（简单）</label>
+                        <input type="number" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label>难度系数（困难）</label>
+                        <input type="number" value="2">
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveRules()">保存配置</button>
+            </div>
+        </main>
+    </div>
+    <script src="common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => initAdminPage());
+        function addTaskType() { showToast('功能开发中', 'warning'); }
+        function saveRules() { showToast('配置已保存', 'success'); }
+    </script>
+</body>
+</html>

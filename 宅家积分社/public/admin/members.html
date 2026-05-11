@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭成员管理 - 宅家积分社管理后台</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🏠 宅家积分社</h1>
+                <p>管理后台</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item" data-page="dashboard">
+                    <span class="icon">📊</span>
+                    <span>数据统计看板</span>
+                </div>
+                <div class="nav-item active" data-page="members">
+                    <span class="icon">👥</span>
+                    <span>家庭成员管理</span>
+                </div>
+                <div class="nav-item" data-page="rules">
+                    <span class="icon">⚙️</span>
+                    <span>家务规则配置</span>
+                </div>
+                <div class="nav-item" data-page="tasks">
+                    <span class="icon">📋</span>
+                    <span>任务排班管理</span>
+                </div>
+                <div class="nav-item" data-page="checkin">
+                    <span class="icon">✅</span>
+                    <span>打卡积分审核</span>
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <span class="icon">🔧</span>
+                    <span>系统设置</span>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">U</div>
+                    <div class="user-detail">
+                        <div class="name">用户</div>
+                        <div class="role">管理员</div>
+                    </div>
+                </div>
+                <button class="logout-btn">退出登录</button>
+            </div>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">家庭成员管理</h2>
+                <div class="page-actions">
+                    <button class="btn btn-primary" onclick="showAddUserModal()">
+                        ➕ 新建用户
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 筛选栏 -->
+            <div class="card">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>关键词搜索</label>
+                        <input type="text" id="searchInput" placeholder="搜索用户">
+                    </div>
+                    <div class="form-group">
+                        <label>用户状态</label>
+                        <select id="statusFilter">
+                            <option value="">全部</option>
+                            <option value="active">正常</option>
+                            <option value="inactive">禁用</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 用户列表 -->
+            <div class="card">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>手机号</th>
+                                <th>角色</th>
+                                <th>积分</th>
+                                <th>状态</th>
+                                <th>注册时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <tr>
+                                <td colspan="7">
+                                    <div class="loading">
+                                        <div class="spinner"></div>
+                                        <p>加载中...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="common.js"></script>
+    <script>
+        let users = [
+            { id: 1, username: 'admin', nickname: '管理员', phone: '13800138001', role: 'admin', totalPoints: 500, status: 'active', createdAt: new Date().toISOString() },
+            { id: 2, username: 'zhangsan', nickname: '张三', phone: '13800138002', role: 'member', totalPoints: 320, status: 'active', createdAt: new Date().toISOString() },
+            { id: 3, username: 'lisi', nickname: '李四', phone: '13800138003', role: 'member', totalPoints: 180, status: 'active', createdAt: new Date().toISOString() },
+        ];
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initAdminPage();
+            renderUserTable();
+        });
+        
+        function renderUserTable() {
+            const tableBody = document.getElementById('userTableBody');
+            
+            if (users.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="empty-state">
+                                <div class="icon">📭</div>
+                                <p>暂无用户</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tableBody.innerHTML = users.map(user => `
+                <tr>
+                    <td><strong>${user.nickname}</strong>
+                    <td>${user.phone || '-'}</td>
+                    <td><span class="tag ${user.role === 'admin' ? 'tag-info' : 'tag-gray'}">${user.role === 'admin' ? '管理员' : '普通用户'}</span></td>
+                    <td><span class="tag tag-success">${user.totalPoints}</span></td>
+                    <td><span class="tag ${user.status === 'active' ? 'tag-success' : 'tag-danger'}">${user.status === 'active' ? '正常' : '禁用'}</span></td>
+                    <td>${formatDate(user.createdAt)}</td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="btn btn-sm btn-default" onclick="editUser(${user.id})">编辑</button>
+                            ${user.status === 'active' 
+                                ? `<button class="btn btn-sm btn-danger" onclick="toggleUserStatus(${user.id})">禁用</button>`
+                                : `<button class="btn btn-sm btn-success" onclick="toggleUserStatus(${user.id})">启用</button>`
+                            }
+                            ${user.role !== 'admin' 
+                                ? `<button class="btn btn-sm btn-primary" onclick="setAdmin(${user.id})">设为管理员</button>`
+                                : ''
+                            }
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function showAddUserModal() {
+            const username = prompt('请输入用户名：');
+            if (!username) return;
+            
+            const password = prompt('请输入密码：');
+            if (!password) return;
+            
+            const nickname = prompt('请输入昵称：') || username;
+            
+            users.push({
+                id: users.length + 1,
+                username,
+                nickname,
+                phone: '',
+                role: 'member',
+                totalPoints: 0,
+                status: 'active',
+                createdAt: new Date().toISOString()
+            });
+            
+            showToast('用户创建成功', 'success');
+            renderUserTable();
+        }
+        
+        function editUser(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+            
+            const nickname = prompt('请输入新昵称：', user.nickname);
+            if (nickname) {
+                user.nickname = nickname;
+                showToast('用户信息已更新', 'success');
+                renderUserTable();
+            }
+        }
+        
+        function toggleUserStatus(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+            
+            user.status = user.status === 'active' ? 'inactive' : 'active';
+            showToast(`用户已${user.status === 'active' ? '启用' : '禁用'}`, 'success');
+            renderUserTable();
+        }
+        
+        function setAdmin(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+            
+            user.role = 'admin';
+            showToast('用户已设为管理员', 'success');
+            renderUserTable();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宅家积分社 - 管理后台登录</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>🏠 宅家积分社</h1>
+                <p>管理后台登录</p>
+            </div>
+            
+            <div class="login-tabs">
+                <button class="tab-btn active" data-tab="username">账号登录</button>
+                <button class="tab-btn" data-tab="phone">手机号登录</button>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div id="username-form" class="tab-content active">
+                    <div class="form-group">
+                        <label for="username">用户名 / 手机号</label>
+                        <input type="text" id="username" name="username" placeholder="请输入用户名或手机号" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" name="password" placeholder="请输入密码" required>
+                    </div>
+                </div>
+
+                <div id="phone-form" class="tab-content">
+                    <div class="form-group">
+                        <label for="phone">手机号</label>
+                        <input type="tel" id="phone" name="phone" placeholder="请输入手机号" maxlength="11" required>
+                    </div>
+                    <div class="form-group code-group">
+                        <label for="code">验证码</label>
+                        <div class="code-input-wrapper">
+                            <input type="text" id="code" name="code" placeholder="请输入验证码" maxlength="6" required>
+                            <button type="button" id="sendCodeBtn" class="send-code-btn">发送验证码</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">登录</button>
+            </form>
+
+            <div class="login-footer">
+                <p>还没有账号？<a href="#" id="registerLink">立即注册</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="login.js"></script>
+</body>
+</html>
