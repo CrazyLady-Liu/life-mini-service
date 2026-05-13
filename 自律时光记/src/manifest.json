@@ -1,0 +1,27 @@
+{
+  "name": "自律时光记",
+  "appid": "__UNI__LIFE_MINI",
+  "description": "自律时光记 - 多模块打卡应用",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "h5": {
+    "title": "自律时光记",
+    "router": {
+      "mode": "hash",
+      "base": "./"
+    },
+    "optimization": {
+      "treeShaking": {
+        "enable": true
+      }
+    }
+  },
+  "mp-weixin": {
+    "appid": "wxe84223cd4548d25e",
+    "setting": {
+      "urlCheck": false
+    },
+    "usingComponents": true
+  }
+}

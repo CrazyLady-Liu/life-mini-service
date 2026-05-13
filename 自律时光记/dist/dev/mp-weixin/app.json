@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/checkin/index",
+    "pages/calendar/index",
+    "pages/target/index",
+    "pages/profile/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "自律时光记",
+    "navigationBarBackgroundColor": "#6366f1",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#6366f1",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/checkin/index",
+        "text": "打卡"
+      },
+      {
+        "pagePath": "pages/calendar/index",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/target/index",
+        "text": "目标"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

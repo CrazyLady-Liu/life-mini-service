@@ -1,0 +1,198 @@
+.page.data-v-a8aeee56 {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #6366f1 0%, #f5f5f5 30%);
+  padding: 32rpx;
+  padding-bottom: 180rpx;
+}
+.header.data-v-a8aeee56 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40rpx;
+}
+.date-section.data-v-a8aeee56 {
+  display: flex;
+  flex-direction: column;
+}
+.date-text.data-v-a8aeee56 {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #fff;
+}
+.weekday-text.data-v-a8aeee56 {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8rpx;
+}
+.streak-badge.data-v-a8aeee56 {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12rpx 20rpx;
+  border-radius: 40rpx;
+  backdrop-filter: blur(10px);
+}
+.streak-icon.data-v-a8aeee56 {
+  font-size: 28rpx;
+  margin-right: 8rpx;
+}
+.streak-text.data-v-a8aeee56 {
+  font-size: 24rpx;
+  color: #fff;
+}
+.progress-section.data-v-a8aeee56 {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 8rpx 32rpx rgba(99, 102, 241, 0.15);
+  margin-bottom: 32rpx;
+}
+.progress-ring.data-v-a8aeee56 {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  flex-shrink: 0;
+}
+.ring-bg.data-v-a8aeee56 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #f3f4f6;
+}
+.ring-progress.data-v-a8aeee56 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#6366f1 calc(var(--progress) * 1%), #f3f4f6 calc(var(--progress) * 1%));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 12rpx), #fff calc(100% - 12rpx));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12rpx), #fff calc(100% - 12rpx));
+}
+.ring-content.data-v-a8aeee56 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.progress-percent.data-v-a8aeee56 {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #6366f1;
+}
+.progress-label.data-v-a8aeee56 {
+  font-size: 20rpx;
+  color: #9ca3af;
+}
+.progress-info.data-v-a8aeee56 {
+  flex: 1;
+  margin-left: 32rpx;
+}
+.progress-count.data-v-a8aeee56 {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1f2937;
+}
+.progress-hint.data-v-a8aeee56 {
+  display: block;
+  font-size: 26rpx;
+  color: #6b7280;
+  margin-top: 8rpx;
+}
+.checkin-list.data-v-a8aeee56 {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.checkin-card.data-v-a8aeee56 {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+.checkin-card.data-v-a8aeee56:active {
+  transform: scale(0.98);
+}
+.checkin-card.completed.data-v-a8aeee56 {
+  background: #f0fdf4;
+}
+.checkin-card.completed .checkin-icon.data-v-a8aeee56 {
+  transform: scale(1.1);
+}
+.checkin-card.completed .checkin-name.data-v-a8aeee56 {
+  color: #10b981;
+}
+.checkin-card.completed .checkin-status.data-v-a8aeee56 {
+  color: #10b981;
+}
+.checkin-icon.data-v-a8aeee56 {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.icon-text.data-v-a8aeee56 {
+  font-size: 40rpx;
+}
+.checkin-info.data-v-a8aeee56 {
+  flex: 1;
+  margin-left: 24rpx;
+}
+.checkin-name.data-v-a8aeee56 {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1f2937;
+}
+.checkin-status.data-v-a8aeee56 {
+  display: block;
+  font-size: 24rpx;
+  color: #9ca3af;
+  margin-top: 4rpx;
+}
+.checkin-check.data-v-a8aeee56 {
+  margin-left: auto;
+}
+.check-circle.data-v-a8aeee56 {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: 3rpx solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.check-circle.checked.data-v-a8aeee56 {
+  background: #10b981;
+  border-color: #10b981;
+}
+.check-icon.data-v-a8aeee56 {
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.motivation-card.data-v-a8aeee56 {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-top: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(251, 191, 36, 0.2);
+}
+.motivation-quote.data-v-a8aeee56 {
+  font-size: 30rpx;
+  color: #92400e;
+  font-weight: 500;
+}

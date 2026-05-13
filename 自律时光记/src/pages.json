@@ -1,0 +1,72 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/checkin/index",
+      "style": {
+        "navigationBarTitleText": "今日打卡",
+        "navigationBarBackgroundColor": "#6366f1",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/calendar/index",
+      "style": {
+        "navigationBarTitleText": "日历统计",
+        "navigationBarBackgroundColor": "#6366f1",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/target/index",
+      "style": {
+        "navigationBarTitleText": "目标设置",
+        "navigationBarBackgroundColor": "#6366f1",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "navigationBarBackgroundColor": "#6366f1",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "自律时光记",
+    "navigationBarBackgroundColor": "#6366f1",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#6366f1",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/checkin/index",
+        "text": "打卡"
+      },
+      {
+        "pagePath": "pages/calendar/index",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/target/index",
+        "text": "目标"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  }
+}
