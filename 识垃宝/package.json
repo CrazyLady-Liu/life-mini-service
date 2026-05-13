@@ -1,0 +1,13 @@
+{
+  "name": "shilabao",
+  "version": "1.0.0",
+  "description": "识垃宝垃圾分类查询小程序",
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "npx miniprogram-serve --port 8080",
+    "build": "npx miniprogram-build"
+  },
+  "keywords": ["垃圾分类", "小程序"],
+  "author": "",
+  "license": "MIT"
+}

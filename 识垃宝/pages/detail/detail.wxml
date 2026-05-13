@@ -1,0 +1,67 @@
+<view class="container">
+  <view class="detail-header" style="background-color: {{categoryInfo.color}}">
+    <text class="detail-icon">{{categoryInfo.icon}}</text>
+    <view class="detail-title">
+      <text class="title-name">{{currentGarbage || categoryInfo.name}}</text>
+      <text class="title-category">{{categoryInfo.name}}</text>
+    </view>
+  </view>
+
+  <view class="detail-content">
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">📝</text>
+        <text class="card-title">分类说明</text>
+      </view>
+      <view class="card-body">
+        <text class="desc-text">{{categoryInfo.description}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">✅</text>
+        <text class="card-title">投放要求</text>
+      </view>
+      <view class="card-body">
+        <text class="tip-text">{{categoryInfo.tips}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">⚠️</text>
+        <text class="card-title">注意事项</text>
+      </view>
+      <view class="card-body">
+        <view class="notes-list">
+          <view wx:for="{{categoryInfo.notes}}" wx:key="*this" class="note-item">
+            <text class="note-dot">•</text>
+            <text class="note-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{similarGarbage.length > 0}}">
+      <view class="card-header">
+        <text class="card-icon">🔗</text>
+        <text class="card-title">同类垃圾</text>
+      </view>
+      <view class="card-body">
+        <view class="similar-list">
+          <view 
+            wx:for="{{similarGarbage}}" 
+            wx:key="name" 
+            class="similar-item"
+            bindtap="goGarbageDetail"
+            data-name="{{item.name}}"
+          >
+            <text class="similar-name">{{item.name}}</text>
+            <text class="similar-arrow">›</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
