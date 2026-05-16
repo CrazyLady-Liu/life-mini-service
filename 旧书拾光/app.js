@@ -17,10 +17,8 @@ App({
   initStorage() {
     const keys = this.globalData.storageKeys;
     
-    if (!wx.getStorageSync(keys.BOOKS)) {
-      const mockBooks = this.getMockBooks();
-      wx.setStorageSync(keys.BOOKS, mockBooks);
-    }
+    const mockBooks = this.getMockBooks();
+    wx.setStorageSync(keys.BOOKS, mockBooks);
     
     if (!wx.getStorageSync(keys.REQUESTS)) {
       wx.setStorageSync(keys.REQUESTS, []);
@@ -55,7 +53,7 @@ App({
         id: 'book_001',
         title: '活着',
         author: '余华',
-        cover: 'https://img3.doubanio.com/view/subject/l/public/s1103371.jpg',
+        cover: 'https://picsum.photos/seed/huozhe/300/400',
         images: [],
         condition: '九成新',
         description: '余华代表作，讲述福贵的一生，感人至深。仅翻阅过一次，书页干净。',
@@ -70,7 +68,7 @@ App({
         id: 'book_002',
         title: '三体',
         author: '刘慈欣',
-        cover: 'https://img9.doubanio.com/view/subject/l/public/s28372393.jpg',
+        cover: 'https://picsum.photos/seed/santi/300/400',
         images: [],
         condition: '八成新',
         description: '科幻巨著，刘慈欣代表作。书脊有轻微磨损，内页完好。',
@@ -85,7 +83,7 @@ App({
         id: 'book_003',
         title: '百年孤独',
         author: '加西亚·马尔克斯',
-        cover: 'https://img3.doubanio.com/view/subject/l/public/s1102673.jpg',
+        cover: 'https://picsum.photos/seed/bainingudu/300/400',
         images: [],
         condition: '九成新',
         description: '魔幻现实主义经典之作。买来收藏，几乎全新。',
@@ -100,7 +98,7 @@ App({
         id: 'book_004',
         title: '人类简史',
         author: '尤瓦尔·赫拉利',
-        cover: 'https://img9.doubanio.com/view/subject/l/public/s27826909.jpg',
+        cover: 'https://picsum.photos/seed/renleijianshi/300/400',
         images: [],
         condition: '七成新',
         description: '从认知革命到科学革命的人类历史。有少量笔记划线，不影响阅读。',
@@ -115,7 +113,7 @@ App({
         id: 'book_005',
         title: '小王子',
         author: '圣埃克苏佩里',
-        cover: 'https://img3.doubanio.com/view/subject/l/public/s1075471.jpg',
+        cover: 'https://picsum.photos/seed/xiaowangzi/300/400',
         images: [],
         condition: '十成新',
         description: '献给所有曾经是孩子的大人。全新未拆封，可交换可借阅。',

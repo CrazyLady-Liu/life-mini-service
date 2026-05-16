@@ -1,0 +1,81 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab {{activeTab === 'received' ? 'active' : ''}}" bindtap="switchTab" data-tab="received">
+      收到的申请
+      <view class="tab-badge" wx:if="{{pendingReceivedCount > 0}}">{{pendingReceivedCount}}</view>
+    </view>
+    <view class="tab {{activeTab === 'sent' ? 'active' : ''}}" bindtap="switchTab" data-tab="sent">
+      发出的申请
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'received'}}">
+    <view class="request-list" wx:if="{{receivedRequests.length > 0}}">
+      <view class="request-item card" wx:for="{{receivedRequests}}" wx:key="id">
+        <view class="request-header">
+          <view class="cover-wrap">
+            <image class="book-cover" src="{{item.bookCover}}" mode="aspectFill" binderror="onReceivedCoverError" data-index="{{index}}" wx:if="{{!receivedCoverErrors[index]}}"></image>
+            <view class="cover-placeholder" wx:if="{{receivedCoverErrors[index]}}">
+              <text class="placeholder-icon">📖</text>
+              <text class="placeholder-text">{{item.bookTitle}}</text>
+            </view>
+          </view>
+          <view class="request-info">
+            <view class="book-title text-ellipsis">{{item.bookTitle}}</view>
+            <view class="request-type">
+              <text class="tag tag-{{item.type}}">{{item.type === 'exchange' ? '交换申请' : '借阅申请'}}</text>
+              <text class="tag tag-{{item.status}}">
+                {{item.status === 'pending' ? '待处理' : item.status === 'accepted' ? '已同意' : item.status === 'rejected' ? '已拒绝' : '已取消'}}
+              </text>
+            </view>
+            <view class="requester-info">申请人：{{item.requesterName}}</view>
+            <view class="request-time">{{item.timeText}}</view>
+          </view>
+        </view>
+        <view class="request-actions" wx:if="{{item.status === 'pending'}}">
+          <button class="btn-secondary action-btn" bindtap="handleRequest" data-id="{{item.id}}" data-action="reject">拒绝</button>
+          <button class="btn-primary action-btn" bindtap="handleRequest" data-id="{{item.id}}" data-action="accept">同意</button>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <view class="empty-icon">📭</view>
+      <view class="empty-text">暂无收到的申请</view>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'sent'}}">
+    <view class="request-list" wx:if="{{sentRequests.length > 0}}">
+      <view class="request-item card" wx:for="{{sentRequests}}" wx:key="id">
+        <view class="request-header">
+          <view class="cover-wrap">
+            <image class="book-cover" src="{{item.bookCover}}" mode="aspectFill" binderror="onSentCoverError" data-index="{{index}}" wx:if="{{!sentCoverErrors[index]}}"></image>
+            <view class="cover-placeholder" wx:if="{{sentCoverErrors[index]}}">
+              <text class="placeholder-icon">📖</text>
+              <text class="placeholder-text">{{item.bookTitle}}</text>
+            </view>
+          </view>
+          <view class="request-info">
+            <view class="book-title text-ellipsis">{{item.bookTitle}}</view>
+            <view class="request-type">
+              <text class="tag tag-{{item.type}}">{{item.type === 'exchange' ? '交换申请' : '借阅申请'}}</text>
+              <text class="tag tag-{{item.status}}">
+                {{item.status === 'pending' ? '待处理' : item.status === 'accepted' ? '已同意' : item.status === 'rejected' ? '已拒绝' : '已取消'}}
+              </text>
+            </view>
+            <view class="requester-info">发给：{{item.ownerName}}</view>
+            <view class="request-time">{{item.timeText}}</view>
+          </view>
+        </view>
+        <view class="request-actions" wx:if="{{item.status === 'pending'}}">
+          <button class="btn-secondary action-btn" bindtap="cancelRequest" data-id="{{item.id}}">取消申请</button>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <view class="empty-icon">📤</view>
+      <view class="empty-text">暂无发出的申请</view>
+      <view class="empty-desc">去书籍广场发现感兴趣的书吧</view>
+    </view>
+  </view>
+</view>

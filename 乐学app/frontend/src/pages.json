@@ -1,0 +1,151 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/teacher/index/index",
+      "style": {
+        "navigationBarTitleText": "教师端"
+      }
+    },
+    {
+      "path": "pages/teacher/students/students",
+      "style": {
+        "navigationBarTitleText": "学生管理"
+      }
+    },
+    {
+      "path": "pages/teacher/student-detail/student-detail",
+      "style": {
+        "navigationBarTitleText": "学生详情"
+      }
+    },
+    {
+      "path": "pages/teacher/homework/homework",
+      "style": {
+        "navigationBarTitleText": "作业管理"
+      }
+    },
+    {
+      "path": "pages/teacher/homework-create/homework-create",
+      "style": {
+        "navigationBarTitleText": "创建作业"
+      }
+    },
+    {
+      "path": "pages/teacher/homework-detail/homework-detail",
+      "style": {
+        "navigationBarTitleText": "作业详情"
+      }
+    },
+    {
+      "path": "pages/teacher/listening/listening",
+      "style": {
+        "navigationBarTitleText": "听力材料"
+      }
+    },
+    {
+      "path": "pages/teacher/analysis/analysis",
+      "style": {
+        "navigationBarTitleText": "学习分析"
+      }
+    },
+    {
+      "path": "pages/teacher/student-analysis/student-analysis",
+      "style": {
+        "navigationBarTitleText": "学生分析报告"
+      }
+    },
+    {
+      "path": "pages/student/index/index",
+      "style": {
+        "navigationBarTitleText": "学生端"
+      }
+    },
+    {
+      "path": "pages/student/homework/homework",
+      "style": {
+        "navigationBarTitleText": "我的作业"
+      }
+    },
+    {
+      "path": "pages/student/homework-do/homework-do",
+      "style": {
+        "navigationBarTitleText": "完成作业"
+      }
+    },
+    {
+      "path": "pages/student/listening/listening",
+      "style": {
+        "navigationBarTitleText": "听力训练"
+      }
+    },
+    {
+      "path": "pages/student/listening-practice/listening-practice",
+      "style": {
+        "navigationBarTitleText": "听力练习"
+      }
+    },
+    {
+      "path": "pages/student/analysis/analysis",
+      "style": {
+        "navigationBarTitleText": "我的成绩"
+      }
+    },
+    {
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "乐学App",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3c9cff",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/teacher/index/index",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/teacher/homework/homework",
+        "iconPath": "static/icons/homework.png",
+        "selectedIconPath": "static/icons/homework-active.png",
+        "text": "作业"
+      },
+      {
+        "pagePath": "pages/teacher/listening/listening",
+        "iconPath": "static/icons/headset.png",
+        "selectedIconPath": "static/icons/headset-active.png",
+        "text": "听力"
+      },
+      {
+        "pagePath": "pages/teacher/analysis/analysis",
+        "iconPath": "static/icons/chart.png",
+        "selectedIconPath": "static/icons/chart-active.png",
+        "text": "分析"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "static/icons/user.png",
+        "selectedIconPath": "static/icons/user-active.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

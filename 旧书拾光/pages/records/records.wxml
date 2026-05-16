@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab {{activeTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">全部</view>
+    <view class="tab {{activeTab === 'exchange' ? 'active' : ''}}" bindtap="switchTab" data-tab="exchange">交换</view>
+    <view class="tab {{activeTab === 'borrow' ? 'active' : ''}}" bindtap="switchTab" data-tab="borrow">借阅</view>
+  </view>
+
+  <view class="record-list" wx:if="{{filteredRecords.length > 0}}">
+    <view class="record-item card" wx:for="{{filteredRecords}}" wx:key="id">
+      <view class="record-header">
+        <view class="cover-wrap">
+          <image class="book-cover" src="{{item.bookCover}}" mode="aspectFill" binderror="onCoverError" data-index="{{index}}" wx:if="{{!coverErrors[index]}}"></image>
+          <view class="cover-placeholder" wx:if="{{coverErrors[index]}}">
+            <text class="placeholder-icon">📖</text>
+            <text class="placeholder-text">{{item.bookTitle}}</text>
+          </view>
+        </view>
+        <view class="record-info">
+          <view class="book-title text-ellipsis">{{item.bookTitle}}</view>
+          <view class="record-type">
+            <text class="tag tag-{{item.type}}">{{item.type === 'exchange' ? '交换' : '借阅'}}</text>
+            <text class="tag tag-{{item.status}}">
+              {{item.status === 'active' ? '进行中' : '已完成'}}
+            </text>
+          </view>
+          <view class="record-partners">
+            <text wx:if="{{item.isOutgoing}}">
+              给 {{item.toUserName}}
+            </text>
+            <text wx:else>
+              来自 {{item.fromUserName}}
+            </text>
+          </view>
+          <view class="record-time">{{item.startTimeText}}</view>
+        </view>
+      </view>
+      <view class="record-detail" wx:if="{{item.type === 'borrow'}}">
+        <view class="detail-row">
+          <text class="detail-label">借阅周期</text>
+          <text class="detail-value">{{item.borrowPeriod}}天</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">到期时间</text>
+          <text class="detail-value">{{item.returnTimeText}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{item.status === 'returned'}}">
+          <text class="detail-label">归还时间</text>
+          <text class="detail-value">{{item.actualReturnTimeText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <view class="empty-icon">📋</view>
+    <view class="empty-text">暂无流转记录</view>
+    <view class="empty-desc">去书籍广场发现感兴趣的书吧</view>
+  </view>
+</view>

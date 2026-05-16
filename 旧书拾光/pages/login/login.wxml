@@ -1,0 +1,50 @@
+<view class="login-container">
+  <view class="login-bg">
+    <view class="bg-circle bg-circle-1"></view>
+    <view class="bg-circle bg-circle-2"></view>
+    <view class="bg-circle bg-circle-3"></view>
+  </view>
+
+  <view class="login-content">
+    <view class="logo-section">
+      <view class="logo-icon">📚</view>
+      <view class="app-name">旧书拾光</view>
+      <view class="app-slogan">让闲置书籍流转起来</view>
+    </view>
+
+    <view class="login-form">
+      <view class="form-item">
+        <view class="input-wrap">
+          <text class="input-icon">👤</text>
+          <input class="form-input" placeholder="请输入昵称" value="{{nickname}}" bindinput="onNicknameInput" maxlength="20" />
+        </view>
+      </view>
+
+      <button class="btn-primary login-btn" bindtap="login" disabled="{{!canLogin}}">
+        进入旧书拾光
+      </button>
+
+      <view class="quick-login">
+        <view class="quick-title">快捷登录</view>
+        <view class="quick-btns">
+          <view class="quick-btn" bindtap="quickLogin" data-name="爱书人">
+            <text class="quick-icon">📖</text>
+            <text class="quick-name">爱书人</text>
+          </view>
+          <view class="quick-btn" bindtap="quickLogin" data-name="小明">
+            <text class="quick-icon">😊</text>
+            <text class="quick-name">小明</text>
+          </view>
+          <view class="quick-btn" bindtap="quickLogin" data-name="书友">
+            <text class="quick-icon">🌟</text>
+            <text class="quick-name">书友</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="login-footer">
+      <text class="footer-text">绿色环保 · 闲置再利用</text>
+    </view>
+  </view>
+</view>

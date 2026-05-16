@@ -1,10 +1,22 @@
 <view class="detail-container" wx:if="{{book}}">
-  <swiper class="cover-swiper" indicator-dots="{{book.images.length > 0}}" autoplay="{{book.images.length > 0}}" circular="{{book.images.length > 0}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff">
+  <swiper class="cover-swiper" indicator-dots="{{book.images.length > 0 || !coverError}}" autoplay="{{book.images.length > 0}}" circular="{{book.images.length > 0}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff">
     <swiper-item>
-      <image class="cover-image" src="{{book.cover}}" mode="aspectFill"></image>
+      <view class="cover-wrap">
+        <image class="cover-image" src="{{book.cover}}" mode="aspectFill" binderror="onCoverError" wx:if="{{!coverError}}"></image>
+        <view class="cover-placeholder" wx:if="{{coverError}}">
+          <text class="placeholder-icon">📖</text>
+          <text class="placeholder-text">{{book.title}}</text>
+        </view>
+      </view>
     </swiper-item>
     <swiper-item wx:for="{{book.images}}" wx:key="index">
-      <image class="cover-image" src="{{item}}" mode="aspectFill"></image>
+      <view class="cover-wrap">
+        <image class="cover-image" src="{{item}}" mode="aspectFill" binderror="onImageError" data-index="{{index}}" wx:if="{{!imageErrors[index]}}"></image>
+        <view class="cover-placeholder" wx:if="{{imageErrors[index]}}">
+          <text class="placeholder-icon">📷</text>
+          <text class="placeholder-text">实拍图{{index + 1}}</text>
+        </view>
+      </view>
     </swiper-item>
   </swiper>
 

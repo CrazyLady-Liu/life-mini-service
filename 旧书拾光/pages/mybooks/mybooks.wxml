@@ -1,0 +1,81 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab {{activeTab === 'published' ? 'active' : ''}}" bindtap="switchTab" data-tab="published">
+      我发布的
+    </view>
+    <view class="tab {{activeTab === 'borrowed' ? 'active' : ''}}" bindtap="switchTab" data-tab="borrowed">
+      我借的
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'published'}}">
+    <view class="book-list" wx:if="{{publishedBooks.length > 0}}">
+      <view class="book-item card" wx:for="{{publishedBooks}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="cover-wrap">
+          <image class="book-cover" src="{{item.cover}}" mode="aspectFill" binderror="onPublishedCoverError" data-index="{{index}}" wx:if="{{!publishedCoverErrors[index]}}"></image>
+          <view class="cover-placeholder" wx:if="{{publishedCoverErrors[index]}}">
+            <text class="placeholder-icon">📖</text>
+            <text class="placeholder-text">{{item.title}}</text>
+          </view>
+        </view>
+        <view class="book-info">
+          <view class="book-title text-ellipsis">{{item.title}}</view>
+          <view class="book-author">{{item.author}}</view>
+          <view class="book-condition">成色：{{item.condition}}</view>
+          <view class="book-tags">
+            <text class="tag tag-{{item.type === 'both' ? 'both' : item.type}}">
+              {{item.type === 'exchange' ? '可交换' : item.type === 'borrow' ? '可借阅' : '可交换/借阅'}}
+            </text>
+            <text class="tag tag-{{item.status}}">
+              {{item.status === 'available' ? '可获取' : item.status === 'pending' ? '申请中' : item.status === 'borrowed' ? '已借出' : '已交换'}}
+            </text>
+          </view>
+          <view class="book-time">{{item.timeText}}</view>
+        </view>
+        <view class="book-actions" wx:if="{{item.status === 'available' || item.status === 'borrowed'}}">
+          <view class="delete-btn" bindtap="deleteBook" data-id="{{item.id}}" catchtap="deleteBook">
+            删除
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <view class="empty-icon">📚</view>
+      <view class="empty-text">暂无发布的书籍</view>
+      <view class="empty-desc">去发布你的第一本闲置书籍吧</view>
+      <button class="btn-primary empty-btn" bindtap="goToPublish">立即发布</button>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'borrowed'}}">
+    <view class="book-list" wx:if="{{borrowedBooks.length > 0}}">
+      <view class="book-item card" wx:for="{{borrowedBooks}}" wx:key="id">
+        <view class="cover-wrap">
+          <image class="book-cover" src="{{item.bookCover}}" mode="aspectFill" binderror="onBorrowedCoverError" data-index="{{index}}" wx:if="{{!borrowedCoverErrors[index]}}"></image>
+          <view class="cover-placeholder" wx:if="{{borrowedCoverErrors[index]}}">
+            <text class="placeholder-icon">📖</text>
+            <text class="placeholder-text">{{item.bookTitle}}</text>
+          </view>
+        </view>
+        <view class="book-info">
+          <view class="book-title text-ellipsis">{{item.bookTitle}}</view>
+          <view class="book-author">来自：{{item.fromUserName}}</view>
+          <view class="book-condition">
+            <text class="tag tag-borrow">借阅中</text>
+          </view>
+          <view class="book-time">到期时间：{{item.returnTimeText}}</view>
+        </view>
+        <view class="book-actions">
+          <view class="return-btn" bindtap="returnBook" data-id="{{item.id}}">
+            归还
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <view class="empty-icon">📖</view>
+      <view class="empty-text">暂无借阅的书籍</view>
+      <view class="empty-desc">去书籍广场发现感兴趣的书吧</view>
+    </view>
+  </view>
+</view>

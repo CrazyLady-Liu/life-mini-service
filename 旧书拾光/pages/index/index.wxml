@@ -14,7 +14,13 @@
 
   <view class="book-list" wx:if="{{filteredBooks.length > 0}}">
     <view class="book-item" wx:for="{{filteredBooks}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
-      <image class="book-cover" src="{{item.cover}}" mode="aspectFill"></image>
+      <view class="cover-wrap">
+        <image class="book-cover" src="{{item.cover}}" mode="aspectFill" binderror="onImageError" data-index="{{index}}" data-field="cover"></image>
+        <view class="cover-placeholder" wx:if="{{item.coverError}}">
+          <text class="placeholder-icon">📖</text>
+          <text class="placeholder-text">{{item.title}}</text>
+        </view>
+      </view>
       <view class="book-info">
         <view class="book-title text-ellipsis">{{item.title}}</view>
         <view class="book-author">{{item.author}}</view>

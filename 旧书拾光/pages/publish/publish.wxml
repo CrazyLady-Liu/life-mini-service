@@ -2,7 +2,13 @@
   <view class="form-item">
     <label class="form-label">书籍封面</label>
     <view class="cover-upload" bindtap="chooseCover">
-      <image wx:if="{{formData.cover}}" class="cover-preview" src="{{formData.cover}}" mode="aspectFill"></image>
+      <view class="cover-wrap" wx:if="{{formData.cover}}">
+        <image class="cover-preview" src="{{formData.cover}}" mode="aspectFill" binderror="onCoverError" wx:if="{{!coverError}}"></image>
+        <view class="cover-error" wx:if="{{coverError}}" bindtap="chooseCover">
+          <text class="error-icon">📷</text>
+          <text class="error-text">重新选择</text>
+        </view>
+      </view>
       <view wx:else class="cover-placeholder">
         <text class="upload-icon">📷</text>
         <text class="upload-text">点击上传封面</text>
@@ -14,7 +20,13 @@
     <label class="form-label">书籍实拍图（最多3张）</label>
     <view class="images-upload">
       <view class="image-item" wx:for="{{formData.images}}" wx:key="index">
-        <image class="image-preview" src="{{item}}" mode="aspectFill"></image>
+        <view class="image-wrap">
+          <image class="image-preview" src="{{item}}" mode="aspectFill" binderror="onImageError" data-index="{{index}}" wx:if="{{!imageErrors[index]}}"></image>
+          <view class="image-error" wx:if="{{imageErrors[index]}}" bindtap="reChooseImage" data-index="{{index}}">
+            <text class="error-icon">📷</text>
+            <text class="error-text">重新选择</text>
+          </view>
+        </view>
         <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</view>
       </view>
       <view class="image-add" wx:if="{{formData.images.length < 3}}" bindtap="chooseImages">

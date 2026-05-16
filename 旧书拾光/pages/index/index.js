@@ -98,5 +98,13 @@ Page({
     wx.switchTab({
       url: '/pages/publish/publish'
     });
+  },
+
+  onImageError(e) {
+    const { index, field } = e.currentTarget.dataset;
+    const key = `filteredBooks[${index}].coverError`;
+    this.setData({
+      [key]: true
+    });
   }
 });

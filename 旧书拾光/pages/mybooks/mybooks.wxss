@@ -1,0 +1,145 @@
+.tabs {
+  display: flex;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 8rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 8rpx;
+}
+
+.tab.active {
+  background: #4A7C59;
+  color: #fff;
+  font-weight: 500;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.book-item {
+  display: flex;
+  padding: 24rpx;
+  position: relative;
+}
+
+.cover-wrap {
+  position: relative;
+  width: 160rpx;
+  height: 210rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.book-cover {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  background: #f0f0f0;
+}
+
+.cover-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4A7C59 0%, #6B9B7A 100%);
+  border-radius: 8rpx;
+}
+
+.placeholder-icon {
+  font-size: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.placeholder-text {
+  font-size: 18rpx;
+  color: #fff;
+  text-align: center;
+  padding: 0 8rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.book-author {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.book-condition {
+  font-size: 24rpx;
+  color: #888;
+  margin-bottom: 12rpx;
+}
+
+.book-tags {
+  margin-bottom: 12rpx;
+}
+
+.book-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.book-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16rpx;
+}
+
+.delete-btn {
+  padding: 8rpx 20rpx;
+  background: #FFEBEE;
+  color: #C62828;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.return-btn {
+  padding: 8rpx 20rpx;
+  background: #E8F5E9;
+  color: #4A7C59;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.empty-btn {
+  margin-top: 32rpx;
+  width: 240rpx;
+}
