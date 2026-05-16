@@ -17,6 +17,19 @@ const JWT_SECRET = process.env.JWT_SECRET || 'lexue-secret-key-2024';
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/admin/dashboard.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'dashboard.html'));
+});
+
+app.get('/admin/student.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'student.html'));
+});
 
 let db;
 let SQL;
