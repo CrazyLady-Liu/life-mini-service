@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索书名、作者" bindinput="onSearchInput" confirm-type="search" bindconfirm="onSearch" />
+    </view>
+  </view>
+
+  <view class="filter-tabs">
+    <view class="filter-tab {{filterType === 'all' ? 'active' : ''}}" bindtap="onFilterChange" data-type="all">全部</view>
+    <view class="filter-tab {{filterType === 'exchange' ? 'active' : ''}}" bindtap="onFilterChange" data-type="exchange">可交换</view>
+    <view class="filter-tab {{filterType === 'borrow' ? 'active' : ''}}" bindtap="onFilterChange" data-type="borrow">可借阅</view>
+  </view>
+
+  <view class="book-list" wx:if="{{filteredBooks.length > 0}}">
+    <view class="book-item" wx:for="{{filteredBooks}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <image class="book-cover" src="{{item.cover}}" mode="aspectFill"></image>
+      <view class="book-info">
+        <view class="book-title text-ellipsis">{{item.title}}</view>
+        <view class="book-author">{{item.author}}</view>
+        <view class="book-condition">成色：{{item.condition}}</view>
+        <view class="book-tags">
+          <text class="tag tag-{{item.type === 'both' ? 'both' : item.type}}">
+            {{item.type === 'exchange' ? '可交换' : item.type === 'borrow' ? '可借阅' : '可交换/借阅'}}
+          </text>
+          <text class="tag tag-{{item.status}}">
+            {{item.status === 'available' ? '可获取' : item.status === 'pending' ? '申请中' : item.status === 'borrowed' ? '已借出' : '已交换'}}
+          </text>
+        </view>
+        <view class="book-owner">
+          <text class="owner-name">{{item.ownerName}}</text>
+          <text class="publish-time">{{item.timeText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{filteredBooks.length === 0 && !loading}}">
+    <view class="empty-icon">📚</view>
+    <view class="empty-text">暂无书籍</view>
+    <view class="empty-desc">去发布你的第一本闲置书籍吧</view>
+    <button class="btn-primary empty-btn" bindtap="goToPublish">立即发布</button>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,132 @@
+.search-bar {
+  margin-bottom: 24rpx;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 48rpx;
+  padding: 16rpx 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.search-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+  color: #999;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.filter-tabs {
+  display: flex;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 8rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.filter-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 8rpx;
+  transition: all 0.3s;
+}
+
+.filter-tab.active {
+  background: #4A7C59;
+  color: #fff;
+  font-weight: 500;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.book-item {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.book-item:active {
+  transform: scale(0.98);
+  box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.book-cover {
+  width: 180rpx;
+  height: 240rpx;
+  border-radius: 8rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+  background: #f0f0f0;
+}
+
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.book-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.book-author {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.book-condition {
+  font-size: 24rpx;
+  color: #888;
+  margin-bottom: 12rpx;
+}
+
+.book-tags {
+  margin-bottom: 12rpx;
+}
+
+.book-owner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22rpx;
+  color: #999;
+}
+
+.owner-name {
+  color: #4A7C59;
+}
+
+.loading {
+  text-align: center;
+  padding: 80rpx;
+  color: #999;
+}
+
+.empty-btn {
+  margin-top: 32rpx;
+  width: 240rpx;
+}

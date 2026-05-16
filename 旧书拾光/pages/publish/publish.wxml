@@ -1,0 +1,82 @@
+<view class="container">
+  <view class="form-item">
+    <label class="form-label">书籍封面</label>
+    <view class="cover-upload" bindtap="chooseCover">
+      <image wx:if="{{formData.cover}}" class="cover-preview" src="{{formData.cover}}" mode="aspectFill"></image>
+      <view wx:else class="cover-placeholder">
+        <text class="upload-icon">📷</text>
+        <text class="upload-text">点击上传封面</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <label class="form-label">书籍实拍图（最多3张）</label>
+    <view class="images-upload">
+      <view class="image-item" wx:for="{{formData.images}}" wx:key="index">
+        <image class="image-preview" src="{{item}}" mode="aspectFill"></image>
+        <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="image-add" wx:if="{{formData.images.length < 3}}" bindtap="chooseImages">
+        <text class="add-icon">+</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <label class="form-label">书名 *</label>
+    <input class="form-input" placeholder="请输入书名" value="{{formData.title}}" bindinput="onInput" data-field="title" />
+  </view>
+
+  <view class="form-item">
+    <label class="form-label">作者 *</label>
+    <input class="form-input" placeholder="请输入作者" value="{{formData.author}}" bindinput="onInput" data-field="author" />
+  </view>
+
+  <view class="form-item">
+    <label class="form-label">成色 *</label>
+    <picker range="{{conditions}}" value="{{conditionIndex}}" bindchange="onConditionChange">
+      <view class="picker-view">
+        {{formData.condition || '请选择成色'}}
+        <text class="picker-arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <label class="form-label">流转方式 *</label>
+    <view class="type-options">
+      <view class="type-option {{formData.type === 'exchange' ? 'active' : ''}}" bindtap="onTypeChange" data-type="exchange">
+        <text class="type-icon">🔄</text>
+        <text class="type-text">交换</text>
+      </view>
+      <view class="type-option {{formData.type === 'borrow' ? 'active' : ''}}" bindtap="onTypeChange" data-type="borrow">
+        <text class="type-icon">📖</text>
+        <text class="type-text">借阅</text>
+      </view>
+      <view class="type-option {{formData.type === 'both' ? 'active' : ''}}" bindtap="onTypeChange" data-type="both">
+        <text class="type-icon">✨</text>
+        <text class="type-text">都可以</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-item" wx:if="{{formData.type === 'borrow' || formData.type === 'both'}}">
+    <label class="form-label">借阅周期（天）</label>
+    <picker range="{{borrowPeriods}}" value="{{periodIndex}}" bindchange="onPeriodChange">
+      <view class="picker-view">
+        {{formData.borrowPeriod ? formData.borrowPeriod + '天' : '请选择归还周期'}}
+        <text class="picker-arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <label class="form-label">书籍描述</label>
+    <textarea class="form-textarea" placeholder="介绍一下这本书的内容、使用情况等..." value="{{formData.description}}" bindinput="onInput" data-field="description"></textarea>
+  </view>
+
+  <button class="btn-primary submit-btn" bindtap="submit" disabled="{{!canSubmit}}">
+    发布书籍
+  </button>
+</view>

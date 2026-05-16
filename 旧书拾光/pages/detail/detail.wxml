@@ -1,0 +1,81 @@
+<view class="detail-container" wx:if="{{book}}">
+  <swiper class="cover-swiper" indicator-dots="{{book.images.length > 0}}" autoplay="{{book.images.length > 0}}" circular="{{book.images.length > 0}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff">
+    <swiper-item>
+      <image class="cover-image" src="{{book.cover}}" mode="aspectFill"></image>
+    </swiper-item>
+    <swiper-item wx:for="{{book.images}}" wx:key="index">
+      <image class="cover-image" src="{{item}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="book-info card">
+    <view class="book-header">
+      <view class="book-title">{{book.title}}</view>
+      <view class="book-tags">
+        <text class="tag tag-{{book.type === 'both' ? 'both' : book.type}}">
+          {{book.type === 'exchange' ? '可交换' : book.type === 'borrow' ? '可借阅' : '可交换/借阅'}}
+        </text>
+        <text class="tag tag-{{book.status}}">
+          {{book.status === 'available' ? '可获取' : book.status === 'pending' ? '申请中' : book.status === 'borrowed' ? '已借出' : '已交换'}}
+        </text>
+      </view>
+    </view>
+
+    <view class="book-author">作者：{{book.author}}</view>
+    <view class="book-condition">成色：{{book.condition}}</view>
+    <view class="book-period" wx:if="{{book.borrowPeriod > 0}}">借阅周期：{{book.borrowPeriod}}天</view>
+  </view>
+
+  <view class="owner-info card">
+    <view class="owner-header">
+      <view class="owner-avatar">👤</view>
+      <view class="owner-detail">
+        <view class="owner-name">{{book.ownerName}}</view>
+        <view class="publish-time">发布于 {{book.timeText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="book-description card">
+    <view class="section-title">书籍描述</view>
+    <view class="description-text">{{book.description || '暂无描述'}}</view>
+  </view>
+
+  <view class="action-bar" wx:if="{{!isOwner && book.status === 'available'}}">
+    <button class="btn-secondary action-btn" bindtap="showRequestModal" data-type="exchange" wx:if="{{book.type === 'exchange' || book.type === 'both'}}">
+      发起交换
+    </button>
+    <button class="btn-primary action-btn" bindtap="showRequestModal" data-type="borrow" wx:if="{{book.type === 'borrow' || book.type === 'both'}}">
+      申请借阅
+    </button>
+  </view>
+
+  <view class="action-bar" wx:if="{{!isOwner && book.status !== 'available'}}">
+    <button class="btn-disabled action-btn" disabled>
+      {{book.status === 'pending' ? '申请处理中' : book.status === 'borrowed' ? '已借出' : '已交换'}}
+    </button>
+  </view>
+
+  <view class="action-bar" wx:if="{{isOwner}}">
+    <button class="btn-disabled action-btn" disabled>
+      这是你发布的书籍
+    </button>
+  </view>
+</view>
+
+<view class="request-modal" wx:if="{{showModal}}">
+  <view class="modal-mask" bindtap="hideRequestModal"></view>
+  <view class="modal-content">
+    <view class="modal-title">{{requestType === 'exchange' ? '发起交换申请' : '申请借阅'}}</view>
+    <view class="modal-desc" wx:if="{{requestType === 'exchange'}}">
+      确认要与 {{book.ownerName}} 交换《{{book.title}}》吗？
+    </view>
+    <view class="modal-desc" wx:else>
+      确认要向 {{book.ownerName}} 借阅《{{book.title}}》{{book.borrowPeriod}} 天吗？
+    </view>
+    <view class="modal-actions">
+      <button class="btn-secondary modal-btn" bindtap="hideRequestModal">取消</button>
+      <button class="btn-primary modal-btn" bindtap="submitRequest">确认申请</button>
+    </view>
+  </view>
+</view>
