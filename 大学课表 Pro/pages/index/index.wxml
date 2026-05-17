@@ -1,0 +1,92 @@
+<view class="page-container">
+  <week-header 
+    selected-date="{{selectedDate}}" 
+    week-number="{{currentWeek}}"
+    bind:datechange="onDateChange"
+    bind:weekchange="onWeekChange"
+  />
+
+  <view class="week-stats-bar">
+    <view class="stats-item">
+      <text class="stats-value">{{weekStats.total}}</text>
+      <text class="stats-label">本周课程</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-value">{{courses.length}}</text>
+      <text class="stats-label">今日课程</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-value">{{weekStats.uniqueCourseCount || 0}}</text>
+      <text class="stats-label">科目数</text>
+    </view>
+  </view>
+
+  <view wx:if="{{nextCourse}}" class="next-course-card" bindtap="onNextCourseTap">
+    <view class="next-header">
+      <text class="next-label">🔔 下一节课</text>
+      <text class="next-timer">即将开始</text>
+    </view>
+    <view class="next-info">
+      <text class="next-name" style="color: {{courseColors[nextCourse.name] || '#667eea'}};">{{nextCourse.name}}</text>
+      <text class="next-meta">📍 {{nextCourse.classroom || '待定'}} · 👨‍🏫 {{nextCourse.teacher || '待定'}}</text>
+    </view>
+  </view>
+
+  <view class="day-courses-section">
+    <view class="section-header">
+      <text class="section-title">📚 今日课程</text>
+      <view class="header-actions">
+        <view class="action-btn" bindtap="onDayView">
+          <text>日视图</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{courses.length === 0}}" class="courses-empty">
+      <empty-state 
+        icon="🎉"
+        title="今天没有课"
+        subtitle="好好享受自由时光吧~"
+      />
+    </view>
+
+    <view wx:else class="courses-list">
+      <course-card
+        wx:for="{{courses}}"
+        wx:key="id"
+        course="{{item}}"
+        color="{{courseColors[item.name] || '#667eea'}}"
+        bind:tap="onCourseTap"
+        bind:longpress="onCourseLongPress"
+      />
+    </view>
+  </view>
+
+  <view class="week-overview-section">
+    <view class="section-header">
+      <text class="section-title">📅 本周概览</text>
+    </view>
+    <view class="week-grid">
+      <view 
+        wx:for="{{['周一', '周二', '周三', '周四', '周五', '周六', '周日']}}" 
+        wx:key="*this"
+        class="week-grid-item"
+      >
+        <text class="grid-day">{{item}}</text>
+        <text class="grid-count">{{weekStats.byDay[index]}}</text>
+        <text class="grid-label">节</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="fab-container">
+    <view class="fab fab-secondary" bindtap="onImportCourse">
+      <text class="fab-icon">📥</text>
+    </view>
+    <view class="fab fab-primary" bindtap="onAddCourse">
+      <text class="fab-icon">+</text>
+    </view>
+  </view>
+</view>

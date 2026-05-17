@@ -1,0 +1,132 @@
+<view class="page-container">
+  <view class="week-selector">
+    <view class="week-nav" bindtap="onPrevWeek">
+      <text class="nav-icon">‹</text>
+    </view>
+    <view class="week-display" bindtap="onToggleWeekPicker">
+      <text class="week-label">第</text>
+      <text class="week-number">{{currentWeek}}</text>
+      <text class="week-label">周</text>
+    </view>
+    <view class="week-nav" bindtap="onNextWeek">
+      <text class="nav-icon">›</text>
+    </view>
+  </view>
+
+  <view wx:if="{{showWeekPicker}}" class="week-picker-popup">
+    <view class="picker-content">
+      <input 
+        class="picker-input"
+        type="number"
+        placeholder="输入周数"
+        value="{{weekNumberInput}}"
+        bindinput="onWeekInput"
+        maxlength="2"
+      />
+      <view class="picker-btns">
+        <view class="picker-btn cancel" bindtap="onToggleWeekPicker">取消</view>
+        <view class="picker-btn confirm" bindtap="onWeekConfirm">确定</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{weekStats && weekStats.total > 0}}" class="stats-content">
+    <view class="overview-card">
+      <view class="overview-item">
+        <text class="overview-value">{{weekStats.total}}</text>
+        <text class="overview-label">本周课程</text>
+      </view>
+      <view class="overview-divider"></view>
+      <view class="overview-item">
+        <text class="overview-value">{{weekStats.uniqueCourseCount}}</text>
+        <text class="overview-label">科目数量</text>
+      </view>
+      <view class="overview-divider"></view>
+      <view class="overview-item">
+        <text class="overview-value">{{weekStats._avgDaily}}</text>
+        <text class="overview-label">日均课程</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">📊 每日课程分布</text>
+      </view>
+      <view class="day-chart">
+        <block wx:for="{{['周一', '周二', '周三', '周四', '周五', '周六', '周日']}}" wx:key="*this">
+          <view class="day-bar-item">
+            <view class="bar-wrapper">
+              <view 
+                class="bar-fill" 
+                style="height: {{weekStats._barHeights[index]}};"
+              ></view>
+            </view>
+            <text class="day-label">{{item}}</text>
+            <text class="day-count">{{weekStats.byDay[index]}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">📚 课程详情</text>
+      </view>
+      <view class="course-list">
+        <view 
+          wx:for="{{courseStats}}" 
+          wx:key="name"
+          class="course-item"
+        >
+          <view class="course-color" style="background: {{item.color}};"></view>
+          <view class="course-info">
+            <text class="course-name">{{item.name}}</text>
+            <text wx:if="{{item.teacher}}" class="course-teacher">{{item.teacher}}</text>
+          </view>
+          <view class="course-count">
+            <text class="count-value">{{item.totalSections}}</text>
+            <text class="count-unit">节</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">💡 学习建议</text>
+      </view>
+      <view class="suggestion-card">
+        <view wx:if="{{weekStats.byDay[0] > 4}}" class="suggestion-item">
+          <text class="suggestion-icon">⚠️</text>
+          <text class="suggestion-text">周一课程较多，注意合理安排预习时间</text>
+        </view>
+        <view wx:if="{{weekStats.byDay[4] > weekStats.byDay[0]}}" class="suggestion-item">
+          <text class="suggestion-icon">📅</text>
+          <text class="suggestion-text">周五课程安排较满，可以提前规划周末复习</text>        </view>
+        <view wx:if="{{courseStats.length > 5}}" class="suggestion-item">
+          <text class="suggestion-icon">✨</text>
+          <text class="suggestion-text">本周科目较多，建议制作学习计划表</text>
+        </view>
+        <view wx:if="{{weekStats.total < 15}}" class="suggestion-item">
+          <text class="suggestion-icon">🎯</text>
+          <text class="suggestion-text">本周课程较少，有充足时间进行自主学习</text>
+        </view>
+        <view wx:if="{{weekStats.byDay[5] + weekStats.byDay[6] > 0}}" class="suggestion-item">
+          <text class="suggestion-icon">📖</text>
+          <text class="suggestion-text">周末也有课程安排，注意休息与学习的平衡</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-stats">
+    <empty-state 
+      icon="📊"
+      title="暂无课程统计"
+      subtitle="添加课程后这里会显示详细的统计数据"
+      button-text="添加课程"
+      show-button="{{true}}"
+      bind:buttontap="onAddCourse"
+    />
+  </view>
+</view>

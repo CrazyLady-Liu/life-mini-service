@@ -1,0 +1,209 @@
+.page-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 120rpx;
+}
+
+.week-stats-bar {
+  display: flex;
+  background: #fff;
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.stats-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 4rpx;
+}
+
+.stats-label {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.stats-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background: #eee;
+  align-self: center;
+}
+
+.next-course-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 0 24rpx 24rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  color: #fff;
+}
+
+.next-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.next-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.next-timer {
+  font-size: 22rpx;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.next-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.next-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #fff !important;
+}
+
+.next-meta {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.day-courses-section {
+  padding: 0 24rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.action-btn {
+  font-size: 24rpx;
+  color: #667eea;
+  padding: 8rpx 16rpx;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8rpx;
+}
+
+.courses-empty {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+}
+
+.courses-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.week-overview-section {
+  padding: 0 24rpx;
+  margin-top: 32rpx;
+}
+
+.week-grid {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 0;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.week-grid-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.grid-day {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.grid-count {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.grid-label {
+  font-size: 20rpx;
+  color: #ccc;
+}
+
+.fab-container {
+  position: fixed;
+  right: 32rpx;
+  bottom: 120rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  z-index: 100;
+}
+
+.fab {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+.fab-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.fab-secondary {
+  background: #fff;
+  width: 80rpx;
+  height: 80rpx;
+  align-self: flex-end;
+}
+
+.fab-icon {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: 300;
+}
+
+.fab-secondary .fab-icon {
+  font-size: 36rpx;
+  color: #667eea;
+}

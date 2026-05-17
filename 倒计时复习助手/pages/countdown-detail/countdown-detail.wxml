@@ -1,0 +1,43 @@
+<view class="detail-container" wx:if="{{countdown}}">
+  <view class="hero-section">
+    <view class="days-wrap">
+      <text class="days-number">{{daysLeft >= 0 ? daysLeft : 0}}</text>
+      <text class="days-label">天</text>
+    </view>
+    <view class="status-wrap">
+      <view wx:if="{{daysLeft < 0}}" class="status-badge expired">已过期</view>
+      <view wx:elif="{{daysLeft === 0}}" class="status-badge today">就是今天</view>
+      <view wx:elif="{{daysLeft <= 3}}" class="status-badge urgent">即将截止</view>
+      <view wx:elif="{{daysLeft <= 7}}" class="status-badge week">一周内</view>
+      <view wx:else class="status-badge normal">倒计时中</view>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="info-card">
+      <view class="info-item">
+        <text class="info-label">名称</text>
+        <text class="info-value">{{countdown.name}}</text>
+      </view>
+      <view class="info-divider"></view>
+      <view class="info-item">
+        <text class="info-label">日期</text>
+        <text class="info-value">{{countdown.date}}</text>
+      </view>
+      <view class="info-divider"></view>
+      <view class="info-item">
+        <text class="info-label">标签</text>
+        <text class="tag {{tagClass}}">{{tagLabel}}</text>
+      </view>
+      <view class="info-divider"></view>
+      <view class="info-item">
+        <text class="info-label">创建时间</text>
+        <text class="info-value">{{countdown.createdAt}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-section">
+    <button class="delete-btn" bindtap="onDelete">删除此倒计时</button>
+  </view>
+</view>

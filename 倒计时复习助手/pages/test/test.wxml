@@ -1,0 +1,61 @@
+<view class="test-container">
+  <view class="test-header">
+    <text class="header-title">🧪 注册登录流程测试</text>
+    <text class="header-desc">模拟家长注册 → 自动登录 → 跳转首页完整流程</text>
+  </view>
+
+  <view class="status-card">
+    <view class="status-item">
+      <text class="status-label">当前登录状态：</text>
+      <text class="status-value {{currentUser ? 'logged-in' : 'not-logged-in'}}">
+        {{currentUser ? '已登录' : '未登录'}}
+      </text>
+    </view>
+    <view wx:if="{{currentUser}}" class="status-item">
+      <text class="status-label">当前用户：</text>
+      <text class="status-value">{{currentUser.studentName}} ({{currentUser.studentId}})</text>
+    </view>
+  </view>
+
+  <view class="test-config">
+    <text class="section-title">测试数据</text>
+    <view class="config-item">
+      <text class="config-label">学生姓名：</text>
+      <text class="config-value">{{testStudentName}}</text>
+    </view>
+    <view class="config-item">
+      <text class="config-label">学号：</text>
+      <text class="config-value">{{testStudentId}}</text>
+    </view>
+    <view class="config-item">
+      <text class="config-label">密码：</text>
+      <text class="config-value">{{testPassword}}</text>
+    </view>
+  </view>
+
+  <view class="test-actions">
+    <button class="btn-primary" bindtap="onSimulateRegister">🚀 模拟注册+自动登录</button>
+    <view class="action-row">
+      <button class="btn-secondary" bindtap="onGoToRegister">前往注册页</button>
+      <button class="btn-secondary" bindtap="onGoToLogin">前往登录页</button>
+    </view>
+    <view class="action-row">
+      <button class="btn-secondary" bindtap="onLogout">退出登录</button>
+      <button class="btn-danger" bindtap="onClearStorage">清空所有数据</button>
+    </view>
+  </view>
+
+  <view wx:if="{{testResult}}" class="result-card {{testResult}}">
+    <text wx:if="{{testResult === 'success'}}" class="result-text">✅ 测试通过！注册后自动登录成功，即将跳转首页</text>
+    <text wx:else class="result-text">❌ 测试失败，请查看日志</text>
+  </view>
+
+  <view class="log-section">
+    <text class="section-title">执行日志</text>
+    <scroll-view scroll-y class="log-container">
+      <view wx:for="{{testLogs}}" wx:key="*this" class="log-item">
+        <text>{{item}}</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

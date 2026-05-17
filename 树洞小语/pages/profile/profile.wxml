@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="header">
+    <view class="app-logo">
+      <text class="logo-icon">🌳</text>
+    </view>
+    <text class="app-name">树洞小语</text>
+    <text class="app-slogan">倾诉心事，温暖相伴</text>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-group">
+      <view class="menu-item" bindtap="handlePrivacy">
+        <view class="menu-left">
+          <text class="menu-icon">🔒</text>
+          <text class="menu-title">隐私设置</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+
+      <view class="menu-item" bindtap="handleAbout">
+        <view class="menu-left">
+          <text class="menu-icon">ℹ️</text>
+          <text class="menu-title">关于树洞</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="menu-group">
+      <view class="menu-item" bindtap="handleClearData">
+        <view class="menu-left">
+          <text class="menu-icon">🗑️</text>
+          <text class="menu-title danger">清空所有数据</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="version">Version 1.0.0</text>
+    <text class="copyright">© 2024 树洞小语</text>
+  </view>
+</view>
+
+<view class="modal" wx:if="{{modalVisible}}" catchtouchmove="noOp">
+  <view class="modal-mask" bindtap="closeModal"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">{{modalTitle}}</text>
+    </view>
+    <view class="modal-body">
+      <text class="modal-text">{{modalContent}}</text>
+    </view>
+    <view class="modal-footer">
+      <button class="modal-btn" bindtap="closeModal">我知道了</button>
+    </view>
+  </view>
+</view>

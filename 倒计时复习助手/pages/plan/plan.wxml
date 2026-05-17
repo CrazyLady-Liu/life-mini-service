@@ -1,0 +1,68 @@
+<view class="plan-container">
+  <view class="date-header">
+    <view class="date-nav" bindtap="onPrevDay">
+      <text class="nav-arrow">‹</text>
+    </view>
+    <picker mode="date" value="{{currentDate}}" bindchange="onDateChange">
+      <view class="date-display">
+        <text class="date-label">{{currentDateLabel}}</text>
+        <text class="date-value">{{currentDate}}</text>
+      </view>
+    </picker>
+    <view class="date-nav" bindtap="onNextDay">
+      <text class="nav-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-number">{{totalCount}}</text>
+      <text class="stat-label">总计划</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-number green">{{completedCount}}</text>
+      <text class="stat-label">已完成</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-number">{{totalCount - completedCount}}</text>
+      <text class="stat-label">待完成</text>
+    </view>
+  </view>
+
+  <view wx:if="{{plans.length === 0}}" class="empty">
+    <text class="empty-icon">📝</text>
+    <text class="empty-text">今天还没有复习计划</text>
+    <view class="empty-btn" bindtap="onAddPlan">+ 添加计划</view>
+  </view>
+
+  <view wx:else class="plan-list">
+    <view 
+      wx:for="{{plans}}" 
+      wx:key="id" 
+      class="plan-card {{item.completed ? 'completed' : ''}}"
+    >
+      <view class="plan-checkbox" catchtap="onToggleComplete" data-id="{{item.id}}">
+        <view class="checkbox {{item.completed ? 'checked' : ''}}">
+          <text wx:if="{{item.completed}}" class="check-icon">✓</text>
+        </view>
+      </view>
+      
+      <view class="plan-content">
+        <text class="plan-subject">{{item.subject}}</text>
+        <text class="plan-detail">{{item.content}}</text>
+      </view>
+      
+      <view class="plan-actions">
+        <view class="delete-btn" catchtap="onDeletePlan" data-id="{{item.id}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{plans.length > 0}}" class="add-fab" bindtap="onAddPlan">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

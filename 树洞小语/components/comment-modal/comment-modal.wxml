@@ -1,0 +1,55 @@
+<view class="comment-modal" wx:if="{{visible}}" catchtouchmove="noOp">
+  <view class="modal-mask" bindtap="handleClose"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">评论 ({{processedPost.commentCount || 0}})</text>
+      <view class="close-btn" bindtap="handleClose">✕</view>
+    </view>
+    
+    <view class="post-preview">
+      <view class="post-header">
+        <view class="avatar" style="background: {{processedPost.avatarColor}}">
+          <text>{{processedPost.nicknameFirst}}</text>
+        </view>
+        <view class="post-info">
+          <text class="nickname">{{processedPost.nickname}}</text>
+          <text class="time">{{processedPost.timeText}}</text>
+        </view>
+        <view class="mood-tag" style="background: {{processedPost.moodColor}}">
+          <text class="emoji">{{processedPost.moodEmoji}}</text>
+        </view>
+      </view>
+      <text class="post-content">{{processedPost.content}}</text>
+    </view>
+    
+    <scroll-view class="comment-list" scroll-y="true">
+      <view wx:if="{{!processedPost.comments || processedPost.comments.length === 0}}" class="empty-state">
+        <text class="empty-text">暂无评论，来抢沙发吧~</text>
+      </view>
+      <view wx:for="{{processedPost.comments}}" wx:key="id" class="comment-item">
+        <view class="comment-avatar" style="background: {{item.avatarColor}}">
+          <text>{{item.nicknameFirst}}</text>
+        </view>
+        <view class="comment-body">
+          <view class="comment-header">
+            <text class="comment-nickname">{{item.nickname}}</text>
+            <text class="comment-time">{{item.timeText}}</text>
+          </view>
+          <text class="comment-content">{{item.content}}</text>
+        </view>
+      </view>
+    </scroll-view>
+    
+    <view class="comment-input-area">
+      <input 
+        class="comment-input" 
+        placeholder="写下你的评论..." 
+        value="{{inputValue}}"
+        bindinput="handleInput"
+        confirm-type="send"
+        bindconfirm="handleSend"
+      />
+      <button class="send-btn" bindtap="handleSend" disabled="{{!inputValue.trim()}}">发送</button>
+    </view>
+  </view>
+</view>

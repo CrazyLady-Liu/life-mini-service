@@ -1,0 +1,106 @@
+.page-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.course-header {
+  padding: 48rpx 32rpx;
+  color: #fff;
+}
+
+.course-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.course-meta {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.detail-card {
+  background: #fff;
+  margin: 24rpx;
+  border-radius: 16rpx;
+  padding: 8rpx 0;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.item-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.item-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.item-value {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.action-section {
+  padding: 0 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  background: #fff;
+  padding: 28rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.action-btn.danger {
+  color: #ee0a24;
+}
+
+.action-icon {
+  font-size: 32rpx;
+}
+
+.action-text {
+  font-size: 28rpx;
+}

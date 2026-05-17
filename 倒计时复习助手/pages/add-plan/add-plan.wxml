@@ -1,0 +1,55 @@
+<view class="add-container">
+  <text class="page-title">📝 新增复习计划</text>
+  
+  <view class="form-card">
+    <view class="form-item">
+      <text class="form-label">复习日期</text>
+      <view class="form-input disabled">
+        <text>{{date}}</text>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">选择科目</text>
+      <view class="subject-list">
+        <view 
+          wx:for="{{subjects}}" 
+          wx:key="*this"
+          class="subject-item {{selectedSubject === item ? 'active' : ''}}"
+          data-subject="{{item}}"
+          bindtap="onSubjectSelect"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+      <view class="or-divider">
+        <text class="or-text">或自定义</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="输入其他科目" 
+        placeholder-class="input-placeholder"
+        value="{{subject}}" 
+        bindinput="onInputSubject"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">复习内容</text>
+      <textarea 
+        class="form-textarea" 
+        placeholder="例如：复习第三章数学公式，完成课后习题1-10" 
+        placeholder-class="input-placeholder"
+        value="{{content}}" 
+        bindinput="onInputContent"
+        maxlength="200"
+        auto-height="{{true}}"
+      />
+    </view>
+  </view>
+
+  <view class="submit-section">
+    <button class="btn-primary" bindtap="onSubmit">保存计划</button>
+  </view>
+</view>

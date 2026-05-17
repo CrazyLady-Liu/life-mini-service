@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "导入课表",
+  "usingComponents": {
+    "course-card": "../../components/course-card/course-card",
+    "empty-state": "../../components/empty-state/empty-state"
+  }
+}

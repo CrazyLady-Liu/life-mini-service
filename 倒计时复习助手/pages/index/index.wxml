@@ -1,0 +1,56 @@
+<view class="index-container">
+  <view class="header">
+    <view class="greeting">
+      <text class="greeting-text">{{greeting}}，{{userInfo.studentName}}</text>
+      <text class="date-text">{{currentDate}}</text>
+    </view>
+    <view class="add-btn" bindtap="onAddCountdown">
+      <text class="add-icon">+</text>
+    </view>
+  </view>
+
+  <view class="section-header">
+    <text class="section-title">⏰ 我的倒计时</text>
+    <text class="count-badge">共 {{countdowns.length}} 个</text>
+  </view>
+
+  <view wx:if="{{countdowns.length === 0}}" class="empty">
+    <text class="empty-icon">📅</text>
+    <text class="empty-text">还没有倒计时</text>
+    <text class="empty-sub">点击右上角 + 添加吧</text>
+  </view>
+
+  <view wx:else class="countdown-list">
+    <view 
+      wx:for="{{countdowns}}" 
+      wx:key="id" 
+      class="countdown-card {{item.daysLeft <= 3 ? 'urgent' : ''}}"
+      bindtap="onCountdownTap"
+      data-id="{{item.id}}"
+    >
+      <view class="card-days">
+        <text class="days-number">{{item.daysLeft >= 0 ? item.daysLeft : 0}}</text>
+        <text class="days-label">天</text>
+      </view>
+      
+      <view class="card-info">
+        <text class="countdown-title">{{item.name}}</text>
+        <view class="countdown-meta">
+          <text class="tag {{item.tagClass}}">{{item.tagLabel}}</text>
+        </view>
+        <text class="countdown-date">{{item.date}}</text>
+      </view>
+      
+      <view class="card-status">
+        <view wx:if="{{item.daysLeft < 0}}" class="status-tag expired">已过期</view>
+        <view wx:elif="{{item.daysLeft === 0}}" class="status-tag today">今天</view>
+        <view wx:elif="{{item.daysLeft <= 3}}" class="status-tag urgent">紧急</view>
+        <view wx:else class="status-tag normal">进行中</view>
+      </view>
+      
+      <view class="delete-btn" catchtap="onDeleteCountdown" data-id="{{item.id}}">
+        <text>删除</text>
+      </view>
+    </view>
+  </view>
+</view>

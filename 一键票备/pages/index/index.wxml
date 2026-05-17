@@ -1,0 +1,77 @@
+<view class="container">
+  <view class="header-bar">
+    <view class="page-title">抬头列表</view>
+    <view wx:if="{{invoiceList.length > 0}}" class="batch-btn" bindtap="onToggleBatchMode">
+      {{isBatchMode ? '取消' : '批量管理'}}
+    </view>
+  </view>
+
+  <view wx:if="{{isBatchMode}}" class="batch-bar">
+    <view class="select-all" bindtap="onSelectAll">
+      <view class="checkbox {{selectAll ? 'checked' : ''}}">
+        <text wx:if="{{selectAll}}">✓</text>
+      </view>
+      <text>全选</text>
+    </view>
+    <view class="batch-actions">
+      <text class="selected-count">已选 {{selectedIds.length}} 项</text>
+      <button class="batch-action-btn" size="mini" bindtap="onBatchSetDefault">设为常用</button>
+      <button class="batch-action-btn delete" size="mini" bindtap="onBatchDelete">批量删除</button>
+    </view>
+  </view>
+
+  <view hidden="{{invoiceList.length > 0}}" class="empty">
+    <view class="empty-icon">📋</view>
+    <view class="empty-text">暂无抬头信息</view>
+    <view class="empty-desc">点击下方按钮添加第一个抬头</view>
+  </view>
+
+  <view wx:for="{{invoiceList}}" wx:key="id" class="card invoice-card {{item.isDefault ? 'default-card' : ''}}" hidden="{{invoiceList.length === 0}}">
+    <view wx:if="{{isBatchMode}}" class="select-checkbox {{selectedIds.indexOf(item.id) > -1 ? 'checked' : ''}}" data-id="{{item.id}}" bindtap="onSelectItem">
+      <text wx:if="{{selectedIds.indexOf(item.id) > -1}}">✓</text>
+    </view>
+    
+    <view class="card-header">
+      <view class="company-name">{{item.companyName}}</view>
+      <view class="tags">
+        <text wx:if="{{item.isDefault}}" class="tag tag-primary">★ 常用</text>
+      </view>
+    </view>
+    
+    <view class="info-item">
+      <text class="info-label">税号：</text>
+      <text class="info-value">{{item.taxNumber}}</text>
+    </view>
+    
+    <view wx:if="{{item.address}}" class="info-item">
+      <text class="info-label">地址：</text>
+      <text class="info-value">{{item.address}}</text>
+    </view>
+    
+    <view wx:if="{{item.phone}}" class="info-item">
+      <text class="info-label">电话：</text>
+      <text class="info-value">{{item.phone}}</text>
+    </view>
+    
+    <view wx:if="{{item.bank}}" class="info-item">
+      <text class="info-label">开户行：</text>
+      <text class="info-value">{{item.bank}}</text>
+    </view>
+    
+    <view wx:if="{{item.account}}" class="info-item">
+      <text class="info-label">账号：</text>
+      <text class="info-value">{{item.account}}</text>
+    </view>
+
+    <view wx:if="{{!isBatchMode}}" class="card-actions">
+      <button class="action-btn copy-btn" size="mini" data-item="{{item}}" bindtap="onCopy">一键复制</button>
+      <button wx:if="{{!item.isDefault}}" class="action-btn default-btn" size="mini" data-id="{{item.id}}" bindtap="onSetDefault">设为常用</button>
+      <button class="action-btn edit-btn" size="mini" data-id="{{item.id}}" bindtap="onEdit">编辑</button>
+      <button class="action-btn delete-btn" size="mini" data-id="{{item.id}}" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+
+  <view class="add-section">
+    <button class="btn-primary add-btn" hover-class="btn-hover" catchtap="onAdd">+ 新增抬头</button>
+  </view>
+</view>

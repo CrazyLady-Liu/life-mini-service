@@ -1,0 +1,46 @@
+<view class="add-container">
+  <text class="page-title">⏰ 新增倒计时</text>
+  
+  <view class="form-card">
+    <view class="form-item">
+      <text class="form-label">倒计时名称</text>
+      <input 
+        class="form-input" 
+        placeholder="例如：数学期中考试" 
+        placeholder-class="input-placeholder"
+        value="{{name}}" 
+        bindinput="onInputName"
+        maxlength="30"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">日期</text>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="form-input picker-input">
+          <text class="{{date ? '' : 'placeholder'}}">{{date || '请选择日期'}}</text>
+          <text class="picker-arrow">📅</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">选择标签</text>
+      <view class="tag-list">
+        <view 
+          wx:for="{{tags}}" 
+          wx:key="value"
+          class="tag-item {{item.checked ? 'active' : ''}}"
+          data-tag="{{item.value}}"
+          bindtap="onTagSelect"
+        >
+          <text class="tag-label">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-section">
+    <button class="btn-primary" bindtap="onSubmit">保 存</button>
+  </view>
+</view>

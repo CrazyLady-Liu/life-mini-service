@@ -1,0 +1,61 @@
+<view class="register-container">
+  <view class="register-header">
+    <text class="header-title">家长注册</text>
+    <text class="header-subtitle">为孩子创建学习账号</text>
+  </view>
+  
+  <view class="register-form">
+    <view class="form-item">
+      <text class="form-label">学生姓名</text>
+      <input 
+        class="form-input" 
+        placeholder="请输入学生姓名" 
+        placeholder-class="input-placeholder"
+        value="{{studentName}}" 
+        bindinput="onInputStudentName"
+      />
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">学号</text>
+      <input 
+        class="form-input" 
+        placeholder="请输入学号" 
+        placeholder-class="input-placeholder"
+        value="{{studentId}}" 
+        bindinput="onInputStudentId"
+      />
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">设置密码</text>
+      <input 
+        class="form-input" 
+        placeholder="请设置6-16位密码" 
+        placeholder-class="input-placeholder"
+        password="{{true}}" 
+        value="{{password}}" 
+        bindinput="onInputPassword"
+      />
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">确认密码</text>
+      <input 
+        class="form-input" 
+        placeholder="请再次输入密码" 
+        placeholder-class="input-placeholder"
+        password="{{true}}" 
+        value="{{confirmPassword}}" 
+        bindinput="onInputConfirmPassword"
+      />
+    </view>
+    
+    <button class="btn-primary" bindtap="onRegister">完成注册</button>
+    
+    <view class="login-link">
+      <text>已有账号？</text>
+      <text class="link-text" bindtap="onBackToLogin">返回登录</text>
+    </view>
+  </view>
+</view>

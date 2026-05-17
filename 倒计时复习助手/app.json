@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/index/index",
+    "pages/add-countdown/add-countdown",
+    "pages/countdown-detail/countdown-detail",
+    "pages/plan/plan",
+    "pages/add-plan/add-plan",
+    "pages/profile/profile",
+    "pages/test/test"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#E8F0F7",
+    "navigationBarTitleText": "倒计时复习助手",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#A3B8CC",
+    "selectedColor": "#7BA3C7",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/plan/plan",
+        "text": "复习计划"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

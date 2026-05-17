@@ -1,0 +1,143 @@
+.page-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20rpx 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.nav-btn {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 50%;
+}
+
+.nav-icon {
+  font-size: 36rpx;
+  color: #666;
+}
+
+.date-info {
+  flex: 1;
+  text-align: center;
+}
+
+.date-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.timeline-container {
+  padding: 24rpx;
+}
+
+.no-courses {
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.timeline {
+  position: relative;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 16rpx 0;
+  overflow: hidden;
+}
+
+.time-slot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding-left: 120rpx;
+  display: flex;
+  align-items: flex-start;
+}
+
+.time-marker {
+  position: absolute;
+  left: 16rpx;
+  width: 88rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 16rpx;
+  border-right: 2rpx solid #eee;
+  height: 100rpx;
+}
+
+.time-text {
+  font-size: 24rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.section-text {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.time-line {
+  flex: 1;
+  height: 1rpx;
+  background: #f0f0f0;
+  margin-top: 30rpx;
+  margin-left: 16rpx;
+}
+
+.courses-overlay {
+  position: absolute;
+  top: 16rpx;
+  left: 120rpx;
+  right: 16rpx;
+  bottom: 16rpx;
+}
+
+.course-block {
+  position: absolute;
+  left: 16rpx;
+  right: 16rpx;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+  border-left: 6rpx solid #667eea;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.course-block:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+.block-name {
+  font-size: 26rpx;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.block-location,
+.block-teacher {
+  font-size: 22rpx;
+  color: #666;
+  display: block;
+  margin-top: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

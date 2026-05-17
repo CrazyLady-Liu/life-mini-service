@@ -1,0 +1,209 @@
+.index-container {
+  padding: 30rpx;
+  padding-bottom: 120rpx;
+  background: #F8F9FC;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.greeting {
+  flex: 1;
+}
+
+.greeting-text {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #5A6C7D;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.date-text {
+  font-size: 26rpx;
+  color: #A3B8CC;
+}
+
+.add-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: #A8D5BA;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(168, 213, 186, 0.4);
+}
+
+.add-icon {
+  font-size: 40rpx;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+  gap: 20rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #5A6C7D;
+}
+
+.count-badge {
+  font-size: 22rpx;
+  color: #8AA3BD;
+  background: #E8F0F7;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.empty {
+  text-align: center;
+  padding: 120rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #8AA3BD;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.empty-sub {
+  font-size: 26rpx;
+  color: #B8C8D8;
+  display: block;
+}
+
+.countdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.countdown-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 36rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8rpx 32rpx rgba(173, 196, 222, 0.15);
+  position: relative;
+}
+
+.countdown-card.urgent {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%);
+  border: 2rpx solid #FFE0E0;
+}
+
+.card-days {
+  width: 120rpx;
+  text-align: center;
+  border-right: 2rpx solid #F0F4F8;
+  padding-right: 30rpx;
+}
+
+.days-number {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #7BA3C7;
+  display: block;
+  line-height: 1;
+  text-align: center;
+}
+
+.countdown-card.urgent .days-number {
+  color: #F4A7A7;
+}
+
+.days-label {
+  font-size: 22rpx;
+  color: #A3B8CC;
+  display: block;
+  text-align: center;
+  margin-top: 4rpx;
+}
+
+.card-info {
+  flex: 1;
+  padding-left: 30rpx;
+}
+
+.countdown-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #5A6C7D;
+  display: block;
+  margin-bottom: 12rpx;
+  text-align: center;
+}
+
+.countdown-meta {
+  text-align: center;
+  margin-bottom: 8rpx;
+}
+
+.countdown-date {
+  font-size: 24rpx;
+  color: #A3B8CC;
+  display: block;
+  text-align: center;
+}
+
+.card-status {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+}
+
+.status-tag {
+  font-size: 20rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+}
+
+.status-tag.normal {
+  background: #E6F7EC;
+  color: #6BBF8E;
+}
+
+.status-tag.urgent {
+  background: #FFE8E8;
+  color: #F4A7A7;
+}
+
+.status-tag.today {
+  background: #FFF4E6;
+  color: #E89F5B;
+}
+
+.status-tag.expired {
+  background: #F0F2F5;
+  color: #A3B8CC;
+}
+
+.delete-btn {
+  position: absolute;
+  bottom: 20rpx;
+  right: 30rpx;
+  font-size: 22rpx;
+  color: #C8D4E0;
+  padding: 8rpx 16rpx;
+}

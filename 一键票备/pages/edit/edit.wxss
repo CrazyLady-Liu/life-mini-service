@@ -1,0 +1,38 @@
+.container {
+  padding: 20rpx 20rpx 160rpx;
+}
+
+.form-card {
+  padding: 40rpx 30rpx;
+}
+
+.required::before {
+  content: '*';
+  color: #ff4d4f;
+  margin-right: 8rpx;
+}
+
+.switch-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.switch-item .form-label {
+  margin-bottom: 0;
+}
+
+.save-section {
+  position: fixed;
+  bottom: 40rpx;
+  left: 40rpx;
+  right: 40rpx;
+  z-index: 999;
+}
+
+.save-btn {
+  width: 100%;
+  box-shadow: 0 4rpx 16rpx rgba(24, 144, 255, 0.4);
+  line-height: 1.5;
+}

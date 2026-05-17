@@ -1,0 +1,145 @@
+.login-container {
+  min-height: 100vh;
+  padding: 60rpx 40rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.logo {
+  font-size: 100rpx;
+  margin-bottom: 20rpx;
+}
+
+.app-name {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.app-desc {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.form-section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 50rpx 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.wechat-login-section {
+  margin-bottom: 40rpx;
+}
+
+.wechat-login-btn {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: #07c160;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  border: none;
+}
+
+.wechat-login-btn::after {
+  border: none;
+}
+
+.wechat-login-btn[disabled] {
+  opacity: 0.6;
+}
+
+.wechat-icon {
+  font-size: 36rpx;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+  gap: 20rpx;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1rpx;
+  background: #eee;
+}
+
+.divider-text {
+  font-size: 24rpx;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.code-item .code-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.code-input {
+  flex: 1;
+}
+
+.code-btn {
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 26rpx;
+  background: #e6f7ff;
+  color: #1890ff;
+  border-radius: 8rpx;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.code-btn::after {
+  border: none;
+}
+
+.code-btn.disabled {
+  background: #f5f5f5;
+  color: #ccc;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.test-account-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
+  font-size: 26rpx;
+}
+
+.test-label {
+  color: #999;
+}
+
+.test-btn {
+  color: #1890ff;
+  margin-left: 10rpx;
+}
+
+.test-info {
+  text-align: center;
+  font-size: 24rpx;
+  color: #ccc;
+  margin-top: 10rpx;
+}

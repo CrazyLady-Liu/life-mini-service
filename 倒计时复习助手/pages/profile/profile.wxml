@@ -1,0 +1,79 @@
+<view class="profile-container">
+  <view class="user-header">
+    <view class="avatar">
+      <text class="avatar-emoji">👦</text>
+    </view>
+    <text class="user-name">{{userInfo.studentName}}</text>
+    <text class="user-id">学号 · {{userInfo.studentId}}</text>
+  </view>
+
+  <view class="content-area">
+    <text class="section-title">✨ 学习统计</text>
+    <view class="stats-card">
+      <view class="stats-row">
+        <view class="stats-item">
+          <text class="stats-number">{{planStats.total || 0}}</text>
+          <text class="stats-label">总计划数</text>
+        </view>
+        <view class="stats-divider"></view>
+        <view class="stats-item">
+          <text class="stats-number green">{{planStats.completed || 0}}</text>
+          <text class="stats-label">已完成</text>
+        </view>
+        <view class="stats-divider"></view>
+        <view class="stats-item">
+          <text class="stats-number blue">{{planStats.completionRate || 0}}%</text>
+          <text class="stats-label">完成率</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="today-card">
+      <text class="today-title">今日任务</text>
+      <view class="progress-wrap">
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{planStats.todayTotal > 0 ? (planStats.todayCompleted / planStats.todayTotal * 100) : 0}}%"></view>
+        </view>
+      </view>
+      <text class="today-count">{{planStats.todayCompleted || 0}} / {{planStats.todayTotal || 0}}</text>
+    </view>
+
+    <text class="section-title">⏰ 倒计时 ({{countdownCount}})</text>
+    <view wx:if="{{upcomingCountdowns.length === 0}}" class="mini-empty">
+      <text>还没有倒计时哦~</text>
+    </view>
+    <view wx:else class="countdown-mini-list">
+      <view wx:for="{{upcomingCountdowns}}" wx:key="id" class="countdown-mini-item">
+        <view class="mini-days-wrap">
+          <text class="mini-days">{{item.daysLeft >= 0 ? item.daysLeft : 0}}</text>
+          <text class="mini-unit">天</text>
+        </view>
+        <view class="mini-info">
+          <text class="mini-title">{{item.name}}</text>
+          <view class="mini-tags">
+            <text class="tag {{item.tagClass}}">{{item.tagLabel}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="view-all-btn" bindtap="onViewAllCountdowns">
+      <text>查看全部倒计时 →</text>
+    </view>
+
+    <text class="section-title">📋 快捷功能</text>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="onViewPlans">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">我的复习计划</text>
+      </view>
+      <view class="menu-item" bindtap="onViewAllCountdowns">
+        <text class="menu-icon">⏰</text>
+        <text class="menu-text">全部倒计时</text>
+      </view>
+    </view>
+
+    <view class="logout-section">
+      <button class="logout-btn" bindtap="onLogout">退出登录</button>
+    </view>
+  </view>
+</view>

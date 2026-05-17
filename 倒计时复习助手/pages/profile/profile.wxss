@@ -1,0 +1,277 @@
+.profile-container {
+  min-height: 100vh;
+  background: #F8F9FC;
+}
+
+.user-header {
+  background: #E8F0F7;
+  padding: 80rpx 40rpx 100rpx;
+  text-align: center;
+  border-radius: 0 0 48rpx 48rpx;
+}
+
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  margin: 0 auto 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(173, 196, 222, 0.25);
+}
+
+.avatar-emoji {
+  font-size: 64rpx;
+}
+
+.user-name {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #5A6C7D;
+  margin-bottom: 12rpx;
+  text-align: center;
+}
+
+.user-id {
+  font-size: 26rpx;
+  color: #8AA3BD;
+  text-align: center;
+  display: block;
+}
+
+.content-area {
+  margin-top: -50rpx;
+  padding: 0 30rpx 120rpx;
+}
+
+.section-title {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #5A6C7D;
+  margin: 40rpx 0 24rpx;
+}
+
+.stats-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 40rpx 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(173, 196, 222, 0.15);
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stats-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stats-number {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #7BA3C7;
+  margin-bottom: 12rpx;
+  text-align: center;
+}
+
+.stats-number.green {
+  color: #88C9A1;
+}
+
+.stats-number.blue {
+  color: #7BA3C7;
+}
+
+.stats-label {
+  font-size: 24rpx;
+  color: #A3B8CC;
+  text-align: center;
+  display: block;
+}
+
+.stats-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background: #EEF2F7;
+}
+
+.today-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 36rpx 40rpx;
+  margin-top: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(173, 196, 222, 0.15);
+  text-align: center;
+}
+
+.today-title {
+  display: block;
+  font-size: 28rpx;
+  color: #8AA3BD;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.progress-wrap {
+  margin-bottom: 20rpx;
+}
+
+.progress-bar {
+  height: 16rpx;
+  background: #EEF2F7;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #A8D5BA 0%, #B8E0C9 100%);
+  border-radius: 12rpx;
+  transition: width 0.3s ease;
+}
+
+.today-count {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #7BA3C7;
+  text-align: center;
+  display: block;
+}
+
+.countdown-mini-list {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(173, 196, 222, 0.15);
+}
+
+.countdown-mini-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #F5F8FC;
+}
+
+.countdown-mini-item:last-child {
+  border-bottom: none;
+}
+
+.mini-days-wrap {
+  width: 100rpx;
+  text-align: center;
+}
+
+.mini-days {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #7BA3C7;
+  text-align: center;
+  display: block;
+}
+
+.mini-unit {
+  font-size: 20rpx;
+  color: #A3B8CC;
+  text-align: center;
+  display: block;
+}
+
+.mini-info {
+  flex: 1;
+  padding-left: 20rpx;
+}
+
+.mini-title {
+  font-size: 28rpx;
+  color: #5A6C7D;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.mini-tags {
+  text-align: left;
+}
+
+.view-all-btn {
+  text-align: center;
+  padding: 24rpx 0;
+  margin-top: 16rpx;
+}
+
+.view-all-btn text {
+  font-size: 26rpx;
+  color: #8AA3BD;
+}
+
+.mini-empty {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 60rpx 0;
+  text-align: center;
+  box-shadow: 0 8rpx 32rpx rgba(173, 196, 222, 0.15);
+}
+
+.mini-empty text {
+  font-size: 26rpx;
+  color: #A3B8CC;
+}
+
+.menu-list {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 32rpx rgba(173, 196, 222, 0.15);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36rpx 40rpx;
+  border-bottom: 2rpx solid #F5F8FC;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.menu-text {
+  font-size: 28rpx;
+  color: #5A6C7D;
+  text-align: center;
+}
+
+.logout-section {
+  padding: 50rpx 60rpx 0;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 92rpx;
+  line-height: 92rpx;
+  background: #FFFFFF;
+  color: #F4A7A7;
+  border: 3rpx solid #F4C7C7;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+.logout-btn::after {
+  border: none;
+}

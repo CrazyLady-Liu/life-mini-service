@@ -1,0 +1,35 @@
+<view 
+  class="course-card {{compact ? 'compact' : ''}}" 
+  style="border-left-color: {{color}}; background: {{color}}15;"
+  bindtap="onTap"
+  bindlongpress="onLongPress"
+>
+  <view class="card-header">
+    <text class="course-name" style="color: {{color}};">{{course.name}}</text>
+    <text wx:if="{{timeSlot}}" class="time-slot">{{timeSlot}}</text>
+  </view>
+  
+  <view wx:if="{{!compact}}" class="card-body">
+    <view wx:if="{{course.teacher}}" class="info-row">
+      <text class="info-icon">👨‍🏫</text>
+      <text class="info-text">{{course.teacher}}</text>
+    </view>
+    <view wx:if="{{course.classroom}}" class="info-row">
+      <text class="info-icon">📍</text>
+      <text class="info-text">{{course.classroom}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-icon">🕐</text>
+      <text class="info-text">{{sectionsDisplay}}</text>
+    </view>
+    <view wx:if="{{showWeekRange && weekRangeDisplay}}" class="info-row">
+      <text class="info-icon">📅</text>
+      <text class="info-text">{{weekRangeDisplay}}</text>
+    </view>
+  </view>
+  
+  <view wx:else class="card-compact-info">
+    <text wx:if="{{course.classroom}}" class="compact-info">{{course.classroom}}</text>
+    <text class="compact-info">{{sectionsDisplay}}</text>
+  </view>
+</view>

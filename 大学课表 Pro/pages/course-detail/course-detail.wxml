@@ -1,0 +1,59 @@
+<view wx:if="{{course}}" class="page-container">
+  <view class="course-header" style="background: linear-gradient(135deg, {{courseColor}} 0%, {{courseColor}}cc 100%);">
+    <text class="course-name">{{course.name}}</text>
+    <view class="course-meta">
+      <text class="meta-tag">{{weekdayDisplay}}</text>
+      <text class="meta-tag">{{sectionsDisplay}}</text>
+      <text class="meta-tag">{{weekRangeDisplay}}</text>
+    </view>
+  </view>
+
+  <view class="detail-card">
+    <view class="detail-item">
+      <text class="item-icon">⏰</text>
+      <view class="item-content">
+        <text class="item-label">上课时间</text>
+        <text class="item-value">{{timeDisplay}}</text>
+      </view>
+    </view>
+
+    <view class="detail-item">
+      <text class="item-icon">📍</text>
+      <view class="item-content">
+        <text class="item-label">上课地点</text>
+        <text class="item-value">{{course.classroom || '未设置'}}</text>
+      </view>
+    </view>
+
+    <view class="detail-item">
+      <text class="item-icon">👨‍🏫</text>
+      <view class="item-content">
+        <text class="item-label">任课教师</text>
+        <text class="item-value">{{course.teacher || '未设置'}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{course.note}}" class="detail-item">
+      <text class="item-icon">📝</text>
+      <view class="item-content">
+        <text class="item-label">备注</text>
+        <text class="item-value">{{course.note}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-section">
+    <view class="action-btn primary" bindtap="onEdit">
+      <text class="action-icon">✏️</text>
+      <text class="action-text">编辑课程</text>
+    </view>
+    <view class="action-btn" bindtap="onShare">
+      <text class="action-icon">📤</text>
+      <text class="action-text">分享课程</text>
+    </view>
+    <view class="action-btn danger" bindtap="onDelete">
+      <text class="action-icon">🗑️</text>
+      <text class="action-text">删除课程</text>
+    </view>
+  </view>
+</view>

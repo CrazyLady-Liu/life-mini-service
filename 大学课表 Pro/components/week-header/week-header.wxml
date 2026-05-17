@@ -1,0 +1,29 @@
+<view class="week-header">
+  <view class="header-top">
+    <view class="nav-btn" bindtap="onPrevWeek">
+      <text class="nav-icon">‹</text>
+    </view>
+    
+    <view class="week-info" bindtap="onBackToday">
+      <text wx:if="{{showWeekNumber}}" class="week-num">第{{weekNumber}}周</text>
+      <text class="back-today">回到今天</text>
+    </view>
+    
+    <view class="nav-btn" bindtap="onNextWeek">
+      <text class="nav-icon">›</text>
+    </view>
+  </view>
+  
+  <view class="week-days">
+    <view 
+      wx:for="{{weekDates}}" 
+      wx:key="date"
+      class="day-item {{item.date === today ? 'today' : ''}} {{item.date === selectedDate ? 'selected' : ''}}"
+      data-date="{{item.date}}"
+      bindtap="onDateTap"
+    >
+      <text class="day-weekday">{{item.weekday}}</text>
+      <text class="day-number">{{item.day}}</text>
+    </view>
+  </view>
+</view>

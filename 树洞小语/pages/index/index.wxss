@@ -1,0 +1,263 @@
+.container {
+  padding: 0;
+  min-height: 100vh;
+}
+
+.header {
+  padding: 40rpx 32rpx 20rpx;
+  background: linear-gradient(135deg, #6B8E9F 0%, #8FB0C1 100%);
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.sub-title {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-tabs {
+  display: flex;
+  padding: 20rpx 24rpx;
+  background: #fff;
+  overflow-x: auto;
+  white-space: nowrap;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  background: #f5f5f5;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: #666;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.filter-tab.active {
+  background: linear-gradient(135deg, #6B8E9F 0%, #8FB0C1 100%);
+  color: #fff;
+}
+
+.filter-emoji {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+
+.waterfall {
+  display: flex;
+  padding: 20rpx;
+  gap: 20rpx;
+}
+
+.waterfall-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.post-card:active {
+  transform: scale(0.98);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-right: 16rpx;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.time {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.mood-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #fff;
+  margin-bottom: 16rpx;
+}
+
+.mood-tag .emoji {
+  margin-right: 6rpx;
+  font-size: 24rpx;
+}
+
+.post-content {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  margin-right: 32rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.action-item.liked {
+  color: #E74C3C;
+}
+
+.action-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.action-count {
+  font-size: 24rpx;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 40rpx;
+}
+
+.empty-emoji {
+  font-size: 120rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.publish-fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: calc(180rpx + env(safe-area-inset-bottom));
+  width: 112rpx;
+  height: 112rpx;
+  background: linear-gradient(135deg, #6B8E9F 0%, #8FB0C1 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(107, 142, 159, 0.4);
+  z-index: 100;
+}
+
+.fab-icon {
+  font-size: 48rpx;
+}
+
+.go-publish-btn {
+  margin-top: 32rpx;
+  padding: 0 48rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(135deg, #6B8E9F 0%, #8FB0C1 100%);
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.test-btn {
+  margin-top: 20rpx;
+  padding: 0 48rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #fff;
+  color: #666;
+  font-size: 26rpx;
+  border-radius: 36rpx;
+  border: 1rpx solid #e0e0e0;
+}
+
+.test-bar {
+  position: fixed;
+  top: 24rpx;
+  right: 24rpx;
+  z-index: 50;
+}
+
+.test-btn-small {
+  padding: 0 24rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: rgba(107, 142, 159, 0.9);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 30rpx;
+  border: none;
+  font-size: 24rpx;
+}
