@@ -1,0 +1,134 @@
+.medicine-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+  border-left: 8rpx solid #4CAF50;
+  transition: all 0.3s ease;
+}
+
+.medicine-card.status-expiring {
+  border-left-color: #ff9800;
+  background: linear-gradient(to right, #fff8e1, #fff);
+}
+
+.medicine-card.status-expired {
+  border-left-color: #f44336;
+  background: linear-gradient(to right, #ffebee, #fff);
+  opacity: 0.8;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.medicine-icon {
+  font-size: 48rpx;
+  margin-right: 16rpx;
+}
+
+.medicine-info {
+  flex: 1;
+}
+
+.medicine-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.medicine-category {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.status-tag {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: 500;
+}
+
+.status-tag.normal {
+  background-color: #e8f5e9;
+  color: #4CAF50;
+}
+
+.status-tag.expiring {
+  background-color: #fff3e0;
+  color: #ff9800;
+}
+
+.status-tag.expired {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+.card-body {
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 12rpx;
+  font-size: 26rpx;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #999;
+  min-width: 140rpx;
+}
+
+.value {
+  color: #333;
+  flex: 1;
+}
+
+.expiry-date.normal {
+  color: #4CAF50;
+}
+
+.expiry-date.expiring {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.expiry-date.expired {
+  color: #f44336;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.action-btn {
+  padding: 12rpx 32rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  margin-left: 16rpx;
+}
+
+.action-btn.edit {
+  background-color: #e3f2fd;
+  color: #2196F3;
+}
+
+.action-btn.delete {
+  background-color: #ffebee;
+  color: #f44336;
+}

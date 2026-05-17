@@ -1,0 +1,91 @@
+<view class="page">
+  <view class="form-section">
+    <view class="form-item">
+      <view class="label">选择药品 <text class="required">*</text></view>
+      <picker
+        range="{{medicineNames}}"
+        value="{{medicineIndex}}"
+        bindchange="onMedicineChange"
+        disabled="{{medicines.length === 0}}"
+      >
+        <view class="picker">
+          {{medicineIndex >= 0 ? medicines[medicineIndex].name : '请选择药品'}}
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+      <view class="tip" wx:if="{{medicines.length === 0}}">
+        暂无药品，请先<text class="link" bindtap="goToAddMedicine">添加药品</text>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">服用人 <text class="required">*</text></view>
+      <view class="member-list">
+        <view
+          wx:for="{{familyMembers}}"
+          wx:key="*this"
+          class="member-tag {{form.person === item ? 'active' : ''}}"
+          bindtap="selectPerson"
+          data-person="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">用量</view>
+      <input
+        class="input"
+        placeholder="如：每次1片，每日3次"
+        value="{{form.dosage}}"
+        bindinput="onInput"
+        data-field="dosage"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="label">用药时间</view>
+      <picker
+        mode="multiSelector"
+        range="{{timeRange}}"
+        value="{{timeValue}}"
+        bindchange="onTimeChange"
+      >
+        <view class="picker">
+          {{form.timeText || '选择用药时间'}}
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="label">症状</view>
+      <input
+        class="input"
+        placeholder="如：感冒、发烧、头痛等"
+        value="{{form.symptom}}"
+        bindinput="onInput"
+        data-field="symptom"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="label">备注</view>
+      <textarea
+        class="textarea"
+        placeholder="添加备注信息"
+        value="{{form.remark}}"
+        bindinput="onInput"
+        data-field="remark"
+        maxlength="200"
+        auto-height
+      />
+    </view>
+  </view>
+
+  <view class="actions">
+    <view class="btn-cancel" bindtap="goBack">取消</view>
+    <view class="btn-submit" bindtap="submit">保存记录</view>
+  </view>
+</view>

@@ -1,0 +1,36 @@
+<view class="medicine-card status-{{status}}" bindtap="onCardTap">
+  <view class="card-header">
+    <view class="medicine-icon">{{categoryIcon}}</view>
+    <view class="medicine-info">
+      <view class="medicine-name">{{medicine.name}}</view>
+      <view class="medicine-category">{{medicine.category}}</view>
+    </view>
+    <view class="status-tag {{status}}">
+      {{statusText}}
+    </view>
+  </view>
+  
+  <view class="card-body">
+    <view class="info-row">
+      <text class="label">规格：</text>
+      <text class="value">{{medicine.specification || '未填写'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">数量：</text>
+      <text class="value">{{medicine.quantity}}{{medicine.unit || '片/粒'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">有效期至：</text>
+      <text class="value expiry-date {{status}}">{{medicine.expiryDate}}</text>
+    </view>
+    <view class="info-row" wx:if="{{medicine.location}}">
+      <text class="label">存放位置：</text>
+      <text class="value">{{medicine.location}}</text>
+    </view>
+  </view>
+
+  <view class="card-actions" wx:if="{{showActions}}">
+    <view class="action-btn edit" catchtap="onEdit">编辑</view>
+    <view class="action-btn delete" catchtap="onDelete">删除</view>
+  </view>
+</view>

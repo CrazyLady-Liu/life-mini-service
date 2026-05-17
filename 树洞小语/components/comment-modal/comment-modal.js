@@ -20,24 +20,29 @@ Component({
 
   observers: {
     'post': function(post) {
-      if (post && post.nickname) {
-        const processedPost = {
-          ...post,
-          nicknameFirst: post.nickname ? post.nickname.charAt(0) : '匿'
-        }
-        if (processedPost.comments) {
-          processedPost.comments = processedPost.comments.map(c => ({
-            ...c,
-            nicknameFirst: c.nickname ? c.nickname.charAt(0) : '匿'
-          }))
-        }
-        this.setData({ processedPost })
+      if (post && post.id) {
+        this.setData({
+          processedPost: { ...post }
+        })
+      }
+    },
+    'visible': function(visible) {
+      if (!visible) {
+        this.setData({ inputValue: '' })
       }
     }
   },
 
   methods: {
     noOp() {},
+
+    formatComment(comment) {
+      return {
+        ...comment,
+        timeText: util.formatTime(comment.timestamp),
+        nicknameFirst: comment.nickname ? comment.nickname.charAt(0) : '匿'
+      }
+    },
 
     handleClose() {
       this.triggerEvent('close')
@@ -51,40 +56,46 @@ Component({
 
     handleSend() {
       const content = this.data.inputValue.trim()
-      if (!content) return
+      if (!content) {
+        wx.showToast({
+          title: '请输入评论内容',
+          icon: 'none'
+        })
+        return
+      }
 
       const nickname = util.getRandomNickname()
-      const comment = {
+      const newComment = {
         id: util.generateId(),
         content: content,
         nickname: nickname,
         avatarColor: util.getRandomAvatar(),
         timestamp: Date.now(),
-        nicknameFirst: nickname.charAt(0)
+        nicknameFirst: nickname.charAt(0),
+        timeText: '刚刚'
       }
 
-      const posts = storage.addComment(this.properties.post.id, comment)
-      const updatedPost = posts.find(p => p.id === this.properties.post.id)
-      
-      if (updatedPost) {
-        updatedPost.comments.forEach(c => {
-          c.timeText = util.formatTime(c.timestamp)
-          if (!c.nicknameFirst && c.nickname) {
-            c.nicknameFirst = c.nickname.charAt(0)
-          }
-        })
-        this.setData({
-          post: updatedPost,
-          inputValue: ''
-        })
-      }
+      storage.addComment(this.data.processedPost.id, newComment)
+
+      const currentComments = this.data.processedPost.comments || []
+      const updatedComments = [...currentComments, newComment]
+      const commentCount = updatedComments.length
+
+      this.setData({
+        inputValue: '',
+        'processedPost.comments': updatedComments,
+        'processedPost.commentCount': commentCount
+      })
 
       wx.showToast({
         title: '评论成功',
         icon: 'success'
       })
 
-      this.triggerEvent('commented', { postId: this.properties.post.id })
+      this.triggerEvent('commented', { 
+        postId: this.data.processedPost.id,
+        commentCount: commentCount
+      })
     }
   }
 })

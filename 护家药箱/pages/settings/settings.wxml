@@ -1,0 +1,93 @@
+<view class="page">
+  <view class="header">
+    <view class="avatar">💊</view>
+    <view class="user-info">
+      <view class="nickname">护家药箱</view>
+      <view class="desc">守护家人健康</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">提醒设置</view>
+    <view class="setting-card">
+      <view class="setting-item">
+        <view class="setting-info">
+          <view class="setting-name">提前提醒天数</view>
+          <view class="setting-desc">药品到期前{{remindDays}}天开始提醒</view>
+        </view>
+        <view class="remind-options">
+          <view
+            wx:for="{{remindOptions}}"
+            wx:key="*this"
+            class="remind-option {{remindDays === item ? 'active' : ''}}"
+            bindtap="selectRemindDays"
+            data-days="{{item}}"
+          >
+            {{item}}天
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">家庭成员管理</view>
+    <view class="setting-card">
+      <view
+        wx:for="{{familyMembers}}"
+        wx:key="*this"
+        class="setting-item"
+      >
+        <view class="setting-info">
+          <view class="member-name">
+            <text class="member-icon">👤</text>
+            {{item}}
+          </view>
+        </view>
+        <view class="delete-member" bindtap="deleteMember" data-index="{{index}}" wx:if="{{familyMembers.length > 1}}">
+          删除
+        </view>
+      </view>
+      
+      <view class="add-member" bindtap="addMember">
+        <text class="add-icon">+</text>
+        添加家庭成员
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">数据管理</view>
+    <view class="setting-card">
+      <view class="setting-item" bindtap="exportData">
+        <view class="setting-info">
+          <view class="setting-name">导出数据 (CSV)</view>
+          <view class="setting-desc">导出药品或用药记录，Excel/WPS可直接打开</view>
+        </view>
+        <text class="arrow">›</text>
+      </view>
+      <view class="setting-item danger" bindtap="clearData">
+        <view class="setting-info">
+          <view class="setting-name">清空所有数据</view>
+          <view class="setting-desc">删除所有药品和用药记录</view>
+        </view>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="setting-card">
+      <view class="setting-item">
+        <view class="setting-info">
+          <view class="setting-name">关于</view>
+          <view class="setting-desc">护家药箱 v1.0.0</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text>© 2024 护家药箱</text>
+  </view>
+</view>

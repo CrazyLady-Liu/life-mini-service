@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "medicine-card": "../../components/medicine-card/medicine-card"
+  },
+  "navigationBarTitleText": "护家药箱",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "medicine-card": "../../components/medicine-card/medicine-card"
+  },
+  "navigationBarTitleText": "药品管理",
+  "enablePullDownRefresh": true
+}

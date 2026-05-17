@@ -1,0 +1,95 @@
+<view class="page">
+  <view class="member-filter">
+    <scroll-view scroll-x="true" class="member-scroll">
+      <view
+        class="member-item {{currentMember === 'all' ? 'active' : ''}}"
+        bindtap="selectMember"
+        data-member="all"
+      >
+        全部
+      </view>
+      <view
+        wx:for="{{familyMembers}}"
+        wx:key="*this"
+        class="member-item {{currentMember === item ? 'active' : ''}}"
+        bindtap="selectMember"
+        data-member="{{item}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="stats-bar">
+    <view class="stat-item">
+      <view class="stat-value">{{records.length}}</view>
+      <view class="stat-label">总记录</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{todayCount}}</view>
+      <view class="stat-label">今日用药</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{thisWeekCount}}</view>
+      <view class="stat-label">本周用药</view>
+    </view>
+  </view>
+
+  <view class="records-container" wx:if="{{groupedRecords.length > 0}}">
+    <view wx:for="{{groupedRecords}}" wx:key="date" class="date-group">
+      <view class="date-header">
+        <text class="date-text">{{item.date}}</text>
+        <text class="date-count">{{item.records.length}}条记录</text>
+      </view>
+      
+      <view class="record-list">
+        <view
+          wx:for="{{item.records}}"
+          wx:for-item="record"
+          wx:key="id"
+          class="record-card"
+        >
+          <view class="record-header">
+            <view class="medicine-info">
+              <view class="medicine-name">{{record.medicineName}}</view>
+              <view class="record-time">{{record.timeText}}</view>
+            </view>
+            <view class="user-tag">{{record.person}}</view>
+          </view>
+          
+          <view class="record-body">
+            <view class="info-row" wx:if="{{record.dosage}}">
+              <text class="label">用量：</text>
+              <text class="value">{{record.dosage}}</text>
+            </view>
+            <view class="info-row" wx:if="{{record.symptom}}">
+              <text class="label">症状：</text>
+              <text class="value">{{record.symptom}}</text>
+            </view>
+            <view class="info-row" wx:if="{{record.remark}}">
+              <text class="label">备注：</text>
+              <text class="value">{{record.remark}}</text>
+            </view>
+          </view>
+          
+          <view class="record-actions">
+            <view class="delete-btn" bindtap="deleteRecord" data-id="{{record.id}}">
+              删除
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <view class="empty-icon">📝</view>
+    <view class="empty-text">暂无用药记录</view>
+    <view class="empty-desc">点击下方按钮记录第一次用药</view>
+    <view class="btn-primary empty-btn" bindtap="goToAdd">记录用药</view>
+  </view>
+
+  <view class="fab" bindtap="goToAdd">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

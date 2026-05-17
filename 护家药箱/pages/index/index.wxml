@@ -1,0 +1,96 @@
+<view class="page">
+  <view class="header">
+    <view class="welcome">
+      <view class="greeting">🏠 护家药箱</view>
+      <view class="subtitle">守护家人健康</view>
+    </view>
+    <view class="add-btn" bindtap="goToAddMedicine">
+      <text class="plus">+</text>
+      <text>添加药品</text>
+    </view>
+  </view>
+
+  <view class="remind-section" wx:if="{{expiringMedicines.length > 0}}">
+    <view class="section-title">
+      <text class="title-icon">⚠️</text>
+      <text>有效期提醒</text>
+      <text class="count">{{expiringMedicines.length}}种</text>
+    </view>
+    <view class="remind-banner">
+      <view class="remind-item" wx:for="{{expiringMedicines}}" wx:key="id" bindtap="goToMedicineDetail" data-medicine="{{item}}">
+        <view class="remind-icon">{{item.status === 'expired' ? '🔴' : '🟠'}}</view>
+        <view class="remind-info">
+          <view class="remind-name">{{item.name}}</view>
+          <view class="remind-text">{{item.statusText}} · 有效期至 {{item.expiryDate}}</view>
+        </view>
+        <view class="arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToAddMedicine">
+      <view class="action-icon">💊</view>
+      <view class="action-text">添加药品</view>
+    </view>
+    <view class="action-item" bindtap="goToAddRecord">
+      <view class="action-icon">📝</view>
+      <view class="action-text">记录用药</view>
+    </view>
+    <view class="action-item" bindtap="goToMedicine">
+      <view class="action-icon">📦</view>
+      <view class="action-text">药品列表</view>
+    </view>
+    <view class="action-item" bindtap="goToSettings">
+      <view class="action-icon">⚙️</view>
+      <view class="action-text">设置</view>
+    </view>
+  </view>
+
+  <view class="stats-section">
+    <view class="stat-card">
+      <view class="stat-number total">{{totalCount}}</view>
+      <view class="stat-label">药品总数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-number normal">{{normalCount}}</view>
+      <view class="stat-label">正常</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-number expiring">{{expiringCount}}</view>
+      <view class="stat-label">临期</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-number expired">{{expiredCount}}</view>
+      <view class="stat-label">过期</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">
+        <text class="title-icon">💊</text>
+        <text>最近添加</text>
+      </view>
+      <view class="more" bindtap="goToMedicine">查看全部 ›</view>
+    </view>
+    
+    <view class="medicine-list" wx:if="{{recentMedicines.length > 0}}">
+      <medicine-card
+        wx:for="{{recentMedicines}}"
+        wx:key="id"
+        medicine="{{item}}"
+        show-actions="{{false}}"
+        remind-days="{{remindDays}}"
+        bind:cardtap="goToMedicineDetail"
+      />
+    </view>
+    
+    <view class="empty" wx:else>
+      <view class="empty-icon">💊</view>
+      <view class="empty-text">暂无药品</view>
+      <view class="empty-desc">点击下方按钮添加第一个药品</view>
+      <view class="btn-primary empty-btn" bindtap="goToAddMedicine">添加药品</view>
+    </view>
+  </view>
+</view>

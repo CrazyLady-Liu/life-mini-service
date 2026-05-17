@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="form-card">
+    <view class="form-group">
+      <text class="form-label">菜品名称 *</text>
+      <input
+        class="form-input"
+        placeholder="请输入菜品名称"
+        value="{{name}}"
+        data-field="name"
+        bindinput="onInput"
+        focus="{{true}}"
+      />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">分类</text>
+      <view class="category-selector">
+        <view
+          wx:for="{{categories}}"
+          wx:key="name"
+          class="category-item"
+          style="{{item.activeStyle}}"
+          data-category="{{item.name}}"
+          bindtap="selectCategory"
+        >
+          <text class="cat-icon">{{item.icon}}</text>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">数量</text>
+      <input
+        class="form-input"
+        placeholder="如：2斤、1个"
+        value="{{quantity}}"
+        data-field="quantity"
+        bindinput="onInput"
+      />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">备注</text>
+      <input
+        class="form-input"
+        placeholder="如：要新鲜的、不要辣"
+        value="{{remark}}"
+        data-field="remark"
+        bindinput="onInput"
+      />
+    </view>
+  </view>
+
+  <view class="action-buttons">
+    <button class="save-btn" bindtap="save">保存</button>
+    <button wx:if="{{id}}" class="delete-btn" bindtap="deleteItem">删除</button>
+  </view>
+</view>

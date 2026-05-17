@@ -22,26 +22,37 @@ Page({
     wx.stopPullDownRefresh()
   },
 
+  formatPost(post, likedPosts) {
+    const moodTag = app.globalData.moodTags.find(tag => tag.id === post.mood)
+    return {
+      ...post,
+      moodName: moodTag ? moodTag.name : '心情',
+      moodEmoji: post.moodEmoji || (moodTag ? moodTag.emoji : '💭'),
+      moodColor: post.moodColor || (moodTag ? moodTag.color : '#999'),
+      timeText: util.formatTime(post.timestamp),
+      isLiked: likedPosts.includes(post.id),
+      nicknameFirst: post.nickname ? post.nickname.charAt(0) : '匿'
+    }
+  },
+
+  formatComments(comments) {
+    if (!comments || comments.length === 0) return []
+    return comments.map(c => ({
+      ...c,
+      timeText: util.formatTime(c.timestamp),
+      nicknameFirst: c.nickname ? c.nickname.charAt(0) : '匿'
+    }))
+  },
+
   loadMyPosts() {
     const allPosts = storage.getPosts()
     const userId = wx.getStorageSync('userId')
     const userPostIds = storage.getUserPosts()
     const likedPosts = storage.getLikedPosts()
 
-    let myPosts = allPosts
+    const myPosts = allPosts
       .filter(post => userPostIds.includes(post.id) || post.userId === userId)
-      .map(post => {
-        const moodTag = app.globalData.moodTags.find(tag => tag.id === post.mood)
-        return {
-          ...post,
-          moodName: moodTag ? moodTag.name : '心情',
-          moodEmoji: post.moodEmoji || (moodTag ? moodTag.emoji : '💭'),
-          moodColor: post.moodColor || (moodTag ? moodTag.color : '#999'),
-          timeText: util.formatTime(post.timestamp),
-          isLiked: likedPosts.includes(post.id),
-          nicknameFirst: post.nickname ? post.nickname.charAt(0) : '匿'
-        }
-      })
+      .map(post => this.formatPost(post, likedPosts))
 
     this.setData({ myPosts })
   },
@@ -82,14 +93,7 @@ Page({
 
   handleComment(e) {
     const post = e.currentTarget.dataset.post
-    if (post.comments) {
-      post.comments.forEach(c => {
-        c.timeText = util.formatTime(c.timestamp)
-        if (!c.nicknameFirst && c.nickname) {
-          c.nicknameFirst = c.nickname.charAt(0)
-        }
-      })
-    }
+    post.comments = this.formatComments(post.comments)
     this.setData({
       selectedPost: post,
       commentModalVisible: true

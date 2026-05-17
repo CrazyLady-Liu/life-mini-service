@@ -1,0 +1,125 @@
+<view class="container">
+  <view class="header">
+    <view class="stats">
+      <text class="stats-text">共 {{shoppingList.length}} 项，已购 {{checkedCount}} 项</text>
+    </view>
+    <view class="header-actions">
+      <button class="action-btn" bindtap="clearChecked">清空已购</button>
+      <button class="action-btn danger" bindtap="clearAll">清空全部</button>
+    </view>
+  </view>
+
+  <view class="quick-tags">
+    <text class="tags-title">快捷添加：</text>
+    <view class="tags-row">
+      <view class="quick-tag" wx:for="{{categories}}" wx:key="name" data-name="{{item.name}}" data-category="{{item.name}}" bindtap="quickAdd">
+        <text class="tag-icon">{{item.icon}}</text>
+        <text class="tag-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="list-container">
+    <view wx:if="{{shoppingList.length === 0}}" class="empty-state">
+      <text class="empty-icon">🛒</text>
+      <text class="empty-text">购物清单空空如也</text>
+      <text class="empty-hint">点击下方按钮添加菜品吧</text>
+    </view>
+
+    <view wx:else class="shopping-list">
+      <view
+        wx:for="{{shoppingList}}"
+        wx:key="id"
+        class="list-item {{item.checked ? 'checked' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="toggleCheck"
+        bindlongpress="deleteItem"
+      >
+        <view class="checkbox {{item.checked ? 'checked' : ''}}">
+          <text wx:if="{{item.checked}}" class="check-icon">✓</text>
+        </view>
+        <view class="item-content">
+          <view class="item-header">
+            <text class="item-name">{{item.name}}</text>
+            <text wx:if="{{item.category}}" class="item-category" style="background-color: {{item.categoryColor}}20; color: {{item.categoryColor}}">
+              {{item.category}}
+            </text>
+          </view>
+          <view class="item-meta">
+            <text wx:if="{{item.quantity}}" class="item-quantity">数量：{{item.quantity}}</text>
+            <text wx:if="{{item.remark}}" class="item-remark">备注：{{item.remark}}</text>
+          </view>
+        </view>
+        <view class="item-actions" catchtap="editItem" data-id="{{item.id}}">
+          <text class="edit-icon">✏️</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="add-btn-wrapper">
+    <button class="add-btn" bindtap="showAddForm">+ 添加菜品</button>
+  </view>
+
+  <view wx:if="{{showAddPanel}}" class="add-panel-mask" bindtap="hideAddForm">
+    <view class="add-panel" catchtap="stopPropagation">
+      <view class="panel-header">
+        <text class="panel-title">添加菜品</text>
+        <text class="panel-close" bindtap="hideAddForm">✕</text>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">菜品名称 *</text>
+        <input
+          class="form-input"
+          placeholder="如：西红柿、五花肉"
+          value="{{inputValue}}"
+          data-field="inputValue"
+          bindinput="onInput"
+          focus="{{true}}"
+        />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">分类</text>
+        <view class="category-selector">
+          <view
+            wx:for="{{categories}}"
+            wx:key="name"
+            class="category-item"
+            style="{{item.activeStyle}}"
+            data-category="{{item.name}}"
+            bindtap="selectCategory"
+          >
+            <text class="cat-icon">{{item.icon}}</text>
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">数量</text>
+        <input
+          class="form-input"
+          placeholder="如：2斤、1个"
+          value="{{quantity}}"
+          data-field="quantity"
+          bindinput="onInput"
+        />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">备注</text>
+        <input
+          class="form-input"
+          placeholder="如：要新鲜的、不要辣"
+          value="{{remark}}"
+          data-field="remark"
+          bindinput="onInput"
+        />
+      </view>
+
+      <button class="submit-btn" bindtap="addItem">加入清单</button>
+    </view>
+  </view>
+</view>

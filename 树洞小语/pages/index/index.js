@@ -15,11 +15,7 @@ Page({
   },
 
   onLoad() {
-    const moodFilters = [
-      { id: 'all', name: '全部', emoji: '🌳' },
-      ...app.globalData.moodTags
-    ]
-    this.setData({ moodFilters })
+    this.initMoodFilters()
     this.loadPosts()
   },
 
@@ -32,25 +28,43 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-  loadPosts() {
-    let posts = storage.getPosts()
-    const likedPosts = storage.getLikedPosts()
-    
-    posts = posts.map(post => {
-      const moodTag = app.globalData.moodTags.find(tag => tag.id === post.mood)
-      return {
-        ...post,
-        moodName: moodTag ? moodTag.name : '心情',
-        moodEmoji: post.moodEmoji || (moodTag ? moodTag.emoji : '💭'),
-        moodColor: post.moodColor || (moodTag ? moodTag.color : '#999'),
-        timeText: util.formatTime(post.timestamp),
-        isLiked: likedPosts.includes(post.id),
-        nicknameFirst: post.nickname ? post.nickname.charAt(0) : '匿'
-      }
-    })
+  initMoodFilters() {
+    const moodFilters = [
+      { id: 'all', name: '全部', emoji: '🌳' },
+      ...app.globalData.moodTags
+    ]
+    this.setData({ moodFilters })
+  },
 
-    this.setData({ posts })
-    this.filterPosts()
+  loadPosts() {
+    const likedPosts = storage.getLikedPosts()
+    const posts = storage.getPosts().map(post => this.formatPost(post, likedPosts))
+
+    this.setData({ posts }, () => {
+      this.filterPosts()
+    })
+  },
+
+  formatPost(post, likedPosts) {
+    const moodTag = app.globalData.moodTags.find(tag => tag.id === post.mood)
+    return {
+      ...post,
+      moodName: moodTag ? moodTag.name : '心情',
+      moodEmoji: post.moodEmoji || (moodTag ? moodTag.emoji : '💭'),
+      moodColor: post.moodColor || (moodTag ? moodTag.color : '#999'),
+      timeText: util.formatTime(post.timestamp),
+      isLiked: likedPosts.includes(post.id),
+      nicknameFirst: post.nickname ? post.nickname.charAt(0) : '匿'
+    }
+  },
+
+  formatComments(comments) {
+    if (!comments || comments.length === 0) return []
+    return comments.map(c => ({
+      ...c,
+      timeText: util.formatTime(c.timestamp),
+      nicknameFirst: c.nickname ? c.nickname.charAt(0) : '匿'
+    }))
   },
 
   filterPosts() {
@@ -87,33 +101,26 @@ Page({
 
   handleLike(e) {
     const postId = e.currentTarget.dataset.id
-    const posts = storage.toggleLike(postId)
-    
+    const updatedPosts = storage.toggleLike(postId)
     const likedPosts = storage.getLikedPosts()
-    const updatedPosts = this.data.posts.map(post => {
-      const updatedPost = posts.find(p => p.id === post.id)
+    
+    const posts = this.data.posts.map(post => {
+      const newPost = updatedPosts.find(p => p.id === post.id)
       return {
         ...post,
-        likes: updatedPost ? updatedPost.likes : post.likes,
+        likes: newPost ? newPost.likes : post.likes,
         isLiked: likedPosts.includes(post.id)
       }
     })
 
-    this.setData({ posts: updatedPosts }, () => {
+    this.setData({ posts }, () => {
       this.filterPosts()
     })
   },
 
   handleComment(e) {
     const post = e.currentTarget.dataset.post
-    if (post.comments) {
-      post.comments.forEach(c => {
-        c.timeText = util.formatTime(c.timestamp)
-        if (!c.nicknameFirst && c.nickname) {
-          c.nicknameFirst = c.nickname.charAt(0)
-        }
-      })
-    }
+    post.comments = this.formatComments(post.comments)
     this.setData({
       selectedPost: post,
       commentModalVisible: true
@@ -124,13 +131,12 @@ Page({
     this.setData({ commentModalVisible: false })
   },
 
-  handleCommented(e) {
+  handleCommented() {
     this.loadPosts()
   },
 
   handlePostClick(e) {
-    const post = e.currentTarget.dataset.post
-    this.handleComment({ currentTarget: { dataset: { post } } })
+    this.handleComment(e)
   },
 
   goToPublish() {
@@ -162,7 +168,7 @@ Page({
   },
 
   restoreData() {
-    const posts = storage.resetMockData()
+    storage.resetMockData()
     this.loadPosts()
     wx.showToast({
       title: '已恢复示例数据',
